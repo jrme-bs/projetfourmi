@@ -19,6 +19,7 @@ import etresVivants.Individu;
 import fourmiliere.Fourmiliere;
 import nicellipse.component.NiSpace;
 import terrain.Terrain;
+import proie.Proie;
 
 public class Simulation {
 	NiSpace space = new NiSpace("Simulation Fourmis", new Dimension(800, 800));
@@ -26,6 +27,7 @@ public class Simulation {
 	Terrain terrain = new Terrain(new Point(10,10), new Dimension(700,700));
     final int niveau_fourmiliere = 1;
     final int niveau_individu = 2;
+    final int niveau_proie = 3;
 	Timer animation;
 	float jours = 0;
 	JLabel labelJours;
@@ -46,7 +48,7 @@ public class Simulation {
 	}
 	
 	private void creerJourCpt() {
-		labelJours = new JLabel("Jours passés :" + jours, JLabel.RIGHT);
+		labelJours = new JLabel("Jours passï¿½s :" + jours, JLabel.RIGHT);
 		labelJours.setPreferredSize(new Dimension(250, 100));
 		labelJours.setFont(new Font("Verdana", Font.PLAIN, 25));
 	}
@@ -55,7 +57,7 @@ public class Simulation {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		
-		JLabel label = new JLabel("ms par journée:", JLabel.RIGHT);
+		JLabel label = new JLabel("ms par journï¿½e:", JLabel.RIGHT);
 		JSlider slider = new JSlider(JSlider.HORIZONTAL, 1, 1000, 500);
 
 		slider.addChangeListener(new ChangeListener() {
@@ -84,7 +86,7 @@ public class Simulation {
 	
 	public void updateJours() {
 		jours += 1;
-		labelJours.setText("Jours passés :" + jours);
+		labelJours.setText("Jours passï¿½s :" + jours);
 	}
 
 	
@@ -106,10 +108,19 @@ public class Simulation {
 		this.space.repaint();
 	}
 	
+
+	
 	public void nouvelIndividu(Individu individu) {
 		VueIndividu v = new VueIndividu(individu);
 		// Ajoute l'individu au dessus de la fourmiliere
 		this.space.add(v,this.niveau_individu,0);		
+		this.space.repaint();
+	}
+	
+	public void nouvelleProie(Proie proie)
+	{
+		VueProie v = new VueProie(proie);
+		this.space.add(v,this.niveau_proie,0);
 		this.space.repaint();
 	}
 	
@@ -118,7 +129,6 @@ public class Simulation {
 		animation.start();
 	}
 
-	
 	
 	class GraphicAnimation implements ActionListener {
 		int graphicAnimationDelay = 500;
