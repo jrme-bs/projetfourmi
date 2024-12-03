@@ -113,6 +113,12 @@ public class Simulation {
 		this.space.repaint();
 	}
 	
+	public void nouveauDeplacement(Point p) {
+		VueDeplacement v = new VueDeplacement(p);
+		this.space.add(v,4,0);
+		this.space.repaint();
+	}
+	
 	public void startGraphicAnimation() {
 		GraphicAnimation animation = new GraphicAnimation();
 		animation.start();

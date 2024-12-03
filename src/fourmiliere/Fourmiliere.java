@@ -42,6 +42,7 @@ public class Fourmiliere {
 		Fourmi[] mesFourmis = this.population.toArray(new Fourmi[this.population.size()]);
 		contexte.setFourmiliere(this);
 		for (Fourmi fourmi : mesFourmis) {
+			contexte.setDeplacement(fourmi.getPos());
 			fourmi.etapeDeSimulation(contexte);
 		}
 	}
