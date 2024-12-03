@@ -6,7 +6,7 @@ import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 
-import trace.Bilan;
+import trace.BilanEtat;
 import vue.ContexteDeSimulation;
 import vue.VueIndividu;
 
@@ -23,7 +23,7 @@ public class Mort extends Etat{
 	}
 
 	@Override
-	public void updateBilan(Bilan tan) {
+	public void updateBilanEtat(BilanEtat tan) {
 		tan.setNbMort(tan.getNbMort()+1);
 	}
 

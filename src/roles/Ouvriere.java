@@ -5,6 +5,7 @@ import java.util.Random;
 
 
 import etresVivants.Fourmi;
+import trace.BilanRole;
 import vue.ContexteDeSimulation;
 
 public class Ouvriere extends Role {
@@ -39,6 +40,11 @@ public class Ouvriere extends Role {
 		}
 		fourmi.setPos(new Point(x,y));
 		
+	}
+
+	@Override
+	public void updateBilanRole(BilanRole bilan) {
+		bilan.setNbOuvriere(bilan.getNbOuvriere()+1);
 	}
 
 }

@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import etresVivants.Fourmi;
-import trace.Bilan;
+import trace.BilanEtat;
+import trace.BilanRole;
 import vue.ContexteDeSimulation;
 import vue.VueIndividu;
 
@@ -16,7 +17,8 @@ public class Fourmiliere {
 	private List<Point> deplacements;
 	private Point pos;
 	private Dimension dim;
-	private Bilan bilan;
+	private BilanEtat bilanEtat;
+	private BilanRole bilanRole;
 	
 	public Point getPos() {
 		return pos;
@@ -30,7 +32,8 @@ public class Fourmiliere {
 		this.population = new ArrayList<>();
 		this.pos = pos;
 		this.dim = new Dimension(80,80);
-		this.bilan = new Bilan();
+		this.bilanEtat = new BilanEtat();
+		this.bilanRole = new BilanRole();
 	}
 
 	public void ponte(Fourmi oeuf) {
@@ -45,11 +48,13 @@ public class Fourmiliere {
 		Fourmi[] mesFourmis = this.population.toArray(new Fourmi[this.population.size()]);
 		contexte.setFourmiliere(this);
 		for (Fourmi fourmi : mesFourmis) {
-			fourmi.editNbEtat(bilan);
+			fourmi.editNbEtat(bilanEtat);
+			fourmi.editNbRole(bilanRole);
 			contexte.setDeplacement(fourmi.getPos());
 			fourmi.etapeDeSimulation(contexte);
 		}
-		bilan.afficheNbEtatFourmiliere();
+		bilanEtat.afficheNbEtatFourmiliere();
+		bilanRole.afficheNbRoleFourmiliere();
 	}
 		
 }

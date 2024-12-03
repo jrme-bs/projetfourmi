@@ -32,7 +32,5 @@ public class Example0 {
 		frame.getContentPane().add(space);
 		frame.pack();
 		frame.setVisible(true);
-
-	
 	}
 }

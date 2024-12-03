@@ -6,6 +6,7 @@ import java.util.Random;
 import etats.Oeuf;
 import etresVivants.Fourmi;
 import etresVivants.Individu;
+import trace.BilanRole;
 import vue.ContexteDeSimulation;
 
 public class Reine extends Role{	
@@ -22,6 +23,11 @@ public class Reine extends Role{
 			contexte.getFourmiliere().ponte(oeuf);
 			contexte.getSimulation().nouvelIndividu(oeuf);
 		}
+	}
+
+	@Override
+	public void updateBilanRole(BilanRole bilan) {
+		bilan.setNbReine(bilan.getNbReine()+1);
 	}
 
 }
