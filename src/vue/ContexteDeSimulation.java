@@ -1,5 +1,7 @@
 package vue;
 
+import java.awt.Point;
+
 import etresVivants.Individu;
 import fourmiliere.Fourmiliere;
 import terrain.Terrain;
@@ -36,5 +38,4 @@ public class ContexteDeSimulation {
 	public void setIndividu(Individu infividu) {
 		this.individu = infividu;
 	}
-
 }
