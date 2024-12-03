@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import etresVivants.Fourmi;
-import trace.Bilan;
+import trace.BilanEtat;
 import vue.ContexteDeSimulation;
 
 public class Fourmiliere {
 	private List<Fourmi> population;
 	private Point pos;
 	private Dimension dim;
-	private Bilan bilan;
+	private BilanEtat bilan;
 	
 	public Point getPos() {
 		return pos;
@@ -27,7 +27,7 @@ public class Fourmiliere {
 		this.population = new ArrayList<>();
 		this.pos = pos;
 		this.dim = new Dimension(80,80);
-		this.bilan = new Bilan();
+		this.bilan = new BilanEtat();
 	}
 
 	public void ponte(Fourmi oeuf) {

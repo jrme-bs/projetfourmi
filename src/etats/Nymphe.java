@@ -3,7 +3,7 @@ package etats;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import trace.Bilan;
+import trace.BilanEtat;
 import vue.ContexteDeSimulation;
 import vue.VueIndividu;
 
@@ -19,7 +19,7 @@ public class Nymphe extends Etat{
 	}
 
 	@Override
-	public void updateBilan(Bilan bilan) {
+	public void updateBilanEtat(BilanEtat bilan) {
 		bilan.setNbNymphe(bilan.getNbNymphe()+1);
 	}
 	

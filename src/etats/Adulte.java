@@ -8,7 +8,7 @@ import roles.IndividuSexue;
 import roles.Ouvriere;
 import roles.Role;
 import roles.Soldat;
-import trace.Bilan;
+import trace.BilanEtat;
 import vue.ContexteDeSimulation;
 import vue.VueIndividu;
 
@@ -50,7 +50,7 @@ public class Adulte extends Etat {
 	}
 
 	@Override
-	public void updateBilan(Bilan bilan) {
+	public void updateBilanEtat(BilanEtat bilan) {
 		bilan.setNbAdulte(bilan.getNbAdulte()+1);
 	}
 

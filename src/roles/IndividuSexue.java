@@ -3,6 +3,7 @@ package roles;
 import java.util.Random;
 
 import etresVivants.Sexe;
+import trace.BilanRole;
 import vue.ContexteDeSimulation;
 
 public class IndividuSexue extends Role {
@@ -34,6 +35,16 @@ public class IndividuSexue extends Role {
 
 	@Override
 	public void etapeDeSimulation(ContexteDeSimulation contexte) {
+	}
+
+
+	@Override
+	public void updateBilanRole(BilanRole bilan) {
+		if (this.getSexe()==Sexe.male) {
+			bilan.setNbMale(bilan.getNbMale()+1);
+		}else if (this.getSexe()==Sexe.femelle) {
+			bilan.setNbFemale(bilan.getNbFemale()+1);
+		}
 	}
 
 

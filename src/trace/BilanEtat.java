@@ -1,17 +1,17 @@
 package trace;
 
-public class Bilan {
+public class BilanEtat {
 	private int nbOeuf = 0;
 	private int nbLarve = 0;
 	private int nbNymphe = 0;
 	private int nbAdulte = 0;
 	private int nbMort = 0;
 	
-	public Bilan() {
+	public BilanEtat() {
 	
 	}
 	
-	public void newDay() {
+	public void clear() {
 		nbOeuf = 0;
 		nbLarve = 0;
 		nbNymphe = 0;
@@ -28,7 +28,7 @@ public class Bilan {
 		System.out.println("Nombre de fourmis morte : " + nbMort);
 		System.out.println("============================================");
 		
-		newDay();
+		clear();
 	}
 
 	public int getNbOeuf() {
