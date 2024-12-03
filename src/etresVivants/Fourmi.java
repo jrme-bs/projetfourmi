@@ -12,6 +12,7 @@ import etats.Mort;
 import etats.Nymphe;
 import etats.Oeuf;
 import trace.BilanEtat;
+import trace.BilanRole;
 import vue.ContexteDeSimulation;
 import vue.VueIndividu;
 
@@ -87,6 +88,12 @@ public class Fourmi extends Individu {
 	
 	public void editNbEtat(BilanEtat bilan) {
 		etat.updateBilanEtat(bilan);
+	}
+	
+	public void editNbRole(BilanRole bilan) {
+		if (etat instanceof Adulte) {
+			((Adulte) etat).getRole().updateBilanRole(bilan);
+		}
 	}
 
 }

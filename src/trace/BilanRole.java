@@ -19,7 +19,7 @@ public class BilanRole {
 		nbFemale = 0;
 	}
 	
-	public void afficheNbEtatFourmiliere() {
+	public void afficheNbRoleFourmiliere() {
 		System.out.println("============================================");
 		System.out.println("Nombre de reine : " + nbReine);
 		System.out.println("Nombre d'ouvrière : " + nbOuvriere);

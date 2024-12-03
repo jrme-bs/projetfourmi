@@ -42,4 +42,9 @@ public class Ouvriere extends Role {
 		
 	}
 
+	@Override
+	public void updateBilanRole(BilanRole bilan) {
+		bilan.setNbOuvriere(bilan.getNbOuvriere()+1);
+	}
+
 }

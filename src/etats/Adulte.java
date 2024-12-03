@@ -53,6 +53,10 @@ public class Adulte extends Etat {
 	public void updateBilanEtat(BilanEtat bilan) {
 		bilan.setNbAdulte(bilan.getNbAdulte()+1);
 	}
+	@Override
+	public void updateBilanEtat(BilanEtat bilan) {
+		bilan.setNbAdulte(bilan.getNbAdulte()+1);
+	}
 
 	
 }
