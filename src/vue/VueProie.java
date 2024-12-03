@@ -22,11 +22,20 @@ public class VueProie extends VueElement {
 		this.proie = proie;
 		Point pos = this.proie.getPosition();
 		this.setBounds(pos.x, pos.y, 10, 10);
-		this.setBackground((Color.blue));
+		if(proie.getPoids() < 120)
+		{
+			this.setBackground((Color.green));
+
+		}
+		else
+		{
+			this.setBackground(Color.red);
+		}
 	}
 	@Override
 	public void redessine() {
 		// TODO Auto-generated method stub
+		this.setLocation(this.proie.getPosition());
 		
 	}
 

@@ -1,6 +1,9 @@
 package terrain;
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.awt.Dimension;
 
 import etats.Adulte;
@@ -16,6 +19,7 @@ public class Terrain {
 	protected Point pos;
 	protected Dimension dim;
 	Fourmiliere fourmiliere;
+	List<Proie> ListeProie = new ArrayList<>();;
 	Proie proie;
 	
 	public Point getPos() {
@@ -51,14 +55,32 @@ public class Terrain {
 		}
 		fourmiliere.etapeDeSimulation(contexte);
 		
-		if(proie == null)
-		{
-			Point p = new Point(100,100);
-			int poids = 1;
-			proie = new Proie(p,poids);
-			contexte.getSimulation().nouvelleProie(proie);	
+		
+		
+		if(ListeProie.isEmpty()){
+			for(int i = 0 ; i < 10 ; i++)
+			{
+				int x;
+				int y;
+				int poids ;
+				Proie proie;
+				Random rand = new Random();
+				x = rand.nextInt(700);
+				y = rand.nextInt(700);
+				poids = rand.nextInt(150);
+				Point p = new Point(x,y);
+				proie = new Proie(p,poids);
+				ListeProie.add(proie);
+				
+			}
+				
 		}
-		proie.etapeDeSimulation(contexte);
+		for(Proie p : ListeProie)
+		{
+			contexte.getSimulation().nouvelleProie(p);
+			p.etapeDeSimulation(contexte);
+		}
+		
 		
 	}
 
