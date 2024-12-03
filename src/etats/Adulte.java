@@ -8,6 +8,7 @@ import roles.IndividuSexue;
 import roles.Ouvriere;
 import roles.Role;
 import roles.Soldat;
+import trace.Bilan;
 import vue.ContexteDeSimulation;
 import vue.VueIndividu;
 
@@ -46,6 +47,11 @@ public class Adulte extends Etat {
 	public void initialise(VueIndividu vue ) {
 		vue.setBackground(Color.blue);
 		vue.setDimension(new Dimension(3, 3));
+	}
+
+	@Override
+	public void updateBilan(Bilan bilan) {
+		bilan.setNbAdulte(bilan.getNbAdulte()+1);
 	}
 
 	

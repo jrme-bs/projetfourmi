@@ -11,7 +11,7 @@ import etats.Larve;
 import etats.Mort;
 import etats.Nymphe;
 import etats.Oeuf;
-
+import trace.Bilan;
 import vue.ContexteDeSimulation;
 import vue.VueIndividu;
 
@@ -67,7 +67,7 @@ public class Fourmi extends Individu {
 				this.setPoids(2);
 				break;
 		}
-
+		
 		if (this.age == this.dureeDeVie) {
 			this.etat = new Mort();
 			this.setPoids(0);
@@ -83,6 +83,10 @@ public class Fourmi extends Individu {
 		super.etapeDeSimulation(contexte);
 		this.evolution();
 		this.etat.etapeDeSimulation(contexte);
+	}
+	
+	public void editNbEtat(Bilan bilan) {
+		etat.updateBilan(bilan);
 	}
 
 }

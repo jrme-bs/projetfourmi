@@ -6,6 +6,7 @@ import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 
+import trace.Bilan;
 import vue.ContexteDeSimulation;
 import vue.VueIndividu;
 
@@ -19,6 +20,11 @@ public class Mort extends Etat{
 		vue.setBackground(Color.white);
 		vue.setDimension(new Dimension(3, 3));
 		vue.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
+	}
+
+	@Override
+	public void updateBilan(Bilan tan) {
+		tan.setNbMort(tan.getNbMort()+1);
 	}
 
 	
