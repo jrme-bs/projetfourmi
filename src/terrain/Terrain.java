@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import etats.Adulte;
 import etresVivants.Fourmi;
 import fourmiliere.Fourmiliere;
+import proie.Proie;
 import roles.Reine;
 import vue.ContexteDeSimulation;
 import vue.VueFourmiliere;
@@ -15,7 +16,7 @@ public class Terrain {
 	protected Point pos;
 	protected Dimension dim;
 	Fourmiliere fourmiliere;
-
+	Proie proie;
 	
 	public Point getPos() {
 		return this.pos;
@@ -49,6 +50,16 @@ public class Terrain {
 
 		}
 		fourmiliere.etapeDeSimulation(contexte);
+		
+		if(proie == null)
+		{
+			Point p = new Point(100,100);
+			int poids = 1;
+			proie = new Proie(p,poids);
+			contexte.getSimulation().nouvelleProie(proie);	
+		}
+		proie.etapeDeSimulation(contexte);
+		
 	}
 
 }

@@ -1,6 +1,7 @@
 package fourmiliere;
 
 import java.awt.Point;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +9,11 @@ import java.util.List;
 import etresVivants.Fourmi;
 import trace.BilanEtat;
 import vue.ContexteDeSimulation;
+import vue.VueIndividu;
 
 public class Fourmiliere {
 	private List<Fourmi> population;
+	private List<Point> deplacements;
 	private Point pos;
 	private Dimension dim;
 	private BilanEtat bilan;
@@ -43,6 +46,7 @@ public class Fourmiliere {
 		contexte.setFourmiliere(this);
 		for (Fourmi fourmi : mesFourmis) {
 			fourmi.editNbEtat(bilan);
+			contexte.setDeplacement(fourmi.getPos());
 			fourmi.etapeDeSimulation(contexte);
 		}
 		bilan.afficheNbEtatFourmiliere();

@@ -1,13 +1,17 @@
 package vue;
 
+import java.awt.Point;
+
 import etresVivants.Individu;
 import fourmiliere.Fourmiliere;
+import proie.Proie;
 import terrain.Terrain;
 
 public class ContexteDeSimulation {
 	Simulation sim;
 	Fourmiliere fourmiliere;
 	Individu individu;
+	Proie proie;
 	
 	public ContexteDeSimulation(Simulation sim) {
 		this.sim = sim;
@@ -29,6 +33,10 @@ public class ContexteDeSimulation {
 		this.fourmiliere = fourmiliere;
 	}
 	
+	public void setDeplacement(Point p) {
+		sim.nouveauDeplacement(p);
+	}
+	
 	public Individu getIndividu() {
 		return individu;
 	}
@@ -36,5 +44,12 @@ public class ContexteDeSimulation {
 	public void setIndividu(Individu infividu) {
 		this.individu = infividu;
 	}
-
+	public Proie getProie()
+	{
+		return proie;
+	}
+	public void setProie(Proie proie)
+	{
+		this.proie = proie;
+	}
 }
