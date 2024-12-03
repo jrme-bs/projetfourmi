@@ -21,23 +21,24 @@ public class Ouvriere extends Role {
 		pos = rand.nextInt(4);
 		switch (pos) {
 			case 0: {
-				y = y + 1;
+				y = y + 5;
 				break;
 			}
 			case 1: {
-				x = x + 1;
+				x = x + 5;
 				break;
 			}
 			case 2: {
-				y = y - 1;
+				y = y - 5;
 				break;
 			}
 			case 3: {
-				x = x - 1;
+				x = x - 5;
 				break;
 			}
 		}
 		fourmi.setPos(new Point(x,y));
+		
 	}
 
 }

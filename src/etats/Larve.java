@@ -4,6 +4,7 @@ package etats;
 import java.awt.Color;
 import java.awt.Dimension;
 
+import trace.Bilan;
 import vue.ContexteDeSimulation;
 import vue.VueIndividu;
 
@@ -16,6 +17,11 @@ public class Larve extends Etat{
 	public void initialise(VueIndividu vue ) {
 		vue.setBackground(Color.yellow);
 		vue.setDimension(new Dimension(5, 5));
+	}
+
+	@Override
+	public void updateBilan(Bilan bilan) {
+		bilan.setNbLarve(bilan.getNbLarve()+1);
 	}
 
 	

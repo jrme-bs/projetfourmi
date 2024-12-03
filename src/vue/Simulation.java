@@ -48,7 +48,7 @@ public class Simulation {
 	}
 	
 	private void creerJourCpt() {
-		labelJours = new JLabel("Jours pass�s :" + jours, JLabel.RIGHT);
+		labelJours = new JLabel("Jours pass?s :" + jours, JLabel.RIGHT);
 		labelJours.setPreferredSize(new Dimension(250, 100));
 		labelJours.setFont(new Font("Verdana", Font.PLAIN, 25));
 	}
@@ -57,7 +57,7 @@ public class Simulation {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		
-		JLabel label = new JLabel("ms par journ�e:", JLabel.RIGHT);
+		JLabel label = new JLabel("ms par journ?e:", JLabel.RIGHT);
 		JSlider slider = new JSlider(JSlider.HORIZONTAL, 1, 1000, 500);
 
 		slider.addChangeListener(new ChangeListener() {
@@ -86,7 +86,7 @@ public class Simulation {
 	
 	public void updateJours() {
 		jours += 1;
-		labelJours.setText("Jours pass�s :" + jours);
+		labelJours.setText("Jours pass?s :" + jours);
 	}
 
 	
@@ -116,15 +116,17 @@ public class Simulation {
 		this.space.add(v,this.niveau_individu,0);		
 		this.space.repaint();
 	}
-	
+	public void nouveauDeplacement(Point p) {
+		VueDeplacement v = new VueDeplacement(p);
+		this.space.add(v,4,0);
+		this.space.repaint();
+	}
 	public void nouvelleProie(Proie proie)
 	{
 		VueProie v = new VueProie(proie);
 		this.space.add(v,this.niveau_proie,0);
 		this.space.repaint();
-	}
-	
-	public void startGraphicAnimation() {
+	}	public void startGraphicAnimation() {
 		GraphicAnimation animation = new GraphicAnimation();
 		animation.start();
 	}
