@@ -108,8 +108,6 @@ public class Simulation {
 		this.space.repaint();
 	}
 	
-
-	
 	public void nouvelIndividu(Individu individu) {
 		VueIndividu v = new VueIndividu(individu);
 		// Ajoute l'individu au dessus de la fourmiliere
@@ -119,8 +117,8 @@ public class Simulation {
 	public void nouveauDeplacement(Point p) {
 		VueDeplacement v = new VueDeplacement(p);
 		this.space.add(v,4,0);
-		this.space.repaint();
 	}
+	
 	public void nouvelleProie(Proie proie)
 	{
 		VueProie v = new VueProie(proie);
