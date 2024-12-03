@@ -22,6 +22,7 @@ public class VueIndividu extends VueElement {
 	@Override
 	public void redessine() {
 		this.setLocation(this.individu.getPos());
+		individu.initialise(this);
 	}
 }
 

@@ -2,10 +2,18 @@ package vue;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.Timer;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import etresVivants.Individu;
 import fourmiliere.Fourmiliere;
@@ -14,17 +22,72 @@ import terrain.Terrain;
 
 public class Simulation {
 	NiSpace space = new NiSpace("Simulation Fourmis", new Dimension(800, 800));
+	NiSpace time = new NiSpace("Gestion temps", new Dimension(400, 100));
 	Terrain terrain = new Terrain(new Point(10,10), new Dimension(700,700));
     final int niveau_fourmiliere = 1;
     final int niveau_individu = 2;
-	
+	Timer animation;
+	float jours = 0;
+	JLabel labelJours;
 	
 	public Simulation() {
+
 		space.setDoubleBuffered(true);
 		space.openInWindow();
-	    this.nouveauTerrain(terrain);
+		
+		time.setLayout(new BoxLayout(time, BoxLayout.Y_AXIS));
+		time.add(this.jourSlider());
+		this.creerJourCpt();
+		time.add(labelJours);
+		time.setDoubleBuffered(true);
+		time.openInWindow();
+
+		this.nouveauTerrain(terrain);
+	}
+	
+	private void creerJourCpt() {
+		labelJours = new JLabel("Jours passés :" + jours, JLabel.RIGHT);
+		labelJours.setPreferredSize(new Dimension(250, 100));
+		labelJours.setFont(new Font("Verdana", Font.PLAIN, 25));
+	}
+	
+	private JPanel jourSlider() {		
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+		
+		JLabel label = new JLabel("ms par journée:", JLabel.RIGHT);
+		JSlider slider = new JSlider(JSlider.HORIZONTAL, 1, 1000, 500);
+
+		slider.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				JSlider source = (JSlider) e.getSource();
+				if (!source.getValueIsAdjusting()) {
+					int temps = (int) source.getValue();
+					int newDelay = temps;
+					animation.setDelay(newDelay);
+					animation.setInitialDelay(500);
+				}
+			}
+		});
+
+		// Turn on labels at major tick marks.
+		slider.setMajorTickSpacing(200);
+		slider.setMinorTickSpacing(100);
+		slider.setPaintTicks(true);
+		slider.setPaintLabels(true);
+		
+		panel.add(label);
+		panel.add(slider);
+		return panel;
+	}
+	
+	public void updateJours() {
+		jours += 1;
+		labelJours.setText("Jours passés :" + jours);
 	}
 
+	
 	
 	public Terrain getTerrain() {
 		return this.terrain;
@@ -55,11 +118,13 @@ public class Simulation {
 		animation.start();
 	}
 
+	
+	
 	class GraphicAnimation implements ActionListener {
-		final int graphicAnimationDelay = 10;
-
+		int graphicAnimationDelay = 500;
+ 		
 		public void actionPerformed(ActionEvent e) {
-			Component[] views =  Simulation.this.space.getComponents();
+			Component[] views = Simulation.this.space.getComponents();
 			for (int i = 0; i < views.length; i++) {
 				Component c = views[i];
 				if (c instanceof VueElement) {
@@ -67,11 +132,13 @@ public class Simulation {
 					next.mettreAJourVue();
 				}
 			}
+			Simulation.this.updateJours();
+			
 			terrain.etapeDeSimulation(new ContexteDeSimulation(Simulation.this));
 		}
 
 		public void start() {
-			Timer animation = new Timer(0, this);
+			animation = new Timer(0, this);
 			animation.setDelay(this.graphicAnimationDelay);
 			animation.start();
 		}
