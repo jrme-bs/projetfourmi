@@ -4,7 +4,9 @@ import java.awt.Point;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import etresVivants.Fourmi;
 import trace.BilanEtat;
@@ -45,12 +47,17 @@ public class Fourmiliere {
 	}
 	
 	public void etapeDeSimulation(ContexteDeSimulation contexte) {
+		Set<Point> s = new HashSet<Point>();
+
 		Fourmi[] mesFourmis = this.population.toArray(new Fourmi[this.population.size()]);
 		contexte.setFourmiliere(this);
 		for (Fourmi fourmi : mesFourmis) {
+if(!s.contains(fourmi.getPos())) {
+				contexte.setDeplacement(fourmi.getPos());
+				s.add(fourmi.getPos());
+			}
 			fourmi.editNbEtat(bilanEtat);
 			fourmi.editNbRole(bilanRole);
-			contexte.setDeplacement(fourmi.getPos());
 			fourmi.etapeDeSimulation(contexte);
 		}
 		bilanEtat.afficheNbEtatFourmiliere();

@@ -20,7 +20,7 @@ public class Adulte extends Etat {
 		int proba = rand.nextInt(100);
 		// 60 % d'ouvrieres, 25 % de soldats et 15 % d'individus sexu�s
 		
-		if(proba < 60) {
+		if(proba < 80) {
 			this.setRole(new Ouvriere());
 		} else if (proba < 85) {
 			this.setRole(new Soldat());
