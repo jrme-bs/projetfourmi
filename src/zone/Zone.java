@@ -72,7 +72,7 @@ public class Zone {
 	public void addFourmi(Fourmi fourmi)
 	{
 		this.listeFourmi.add(fourmi);
-		if(fourmi.getEtat().deposePheromone()) {
+		if(fourmi.getEtat().deposePheromone() && this.intensitePheromones < 10) {
 			this.intensitePheromones++;
 		}
 	}
@@ -95,34 +95,12 @@ public class Zone {
 	
 	public void updateIntensite() {
 		// tout les 10 jours on reduit l'intensité
-		if(jours % 5 == 0) {
+		if(jours % 5 == 0 && this.intensitePheromones > 0) {
 			this.intensitePheromones--;
 		}
 	}
 	
 	public void initialise(VueZone vue) {
-		switch(intensitePheromones) {
-		case 0 :
-			vue.setBackground(new Color(255, 0, 0, 0));
-			break;
-		case 1 :
-			vue.setBackground(new Color(255, 0, 0, 10));
-			break;
-		case 2 :
-			vue.setBackground(new Color(255, 0, 0, 30));
-			break;
-		case 3 :
-			vue.setBackground(new Color(255, 0, 0, 50));
-			break;
-		case 4 : 
-			vue.setBackground(new Color(255, 0, 0, 70));
-			break;
-		case 5 : 
-			vue.setBackground(new Color(255, 0, 0, 90));
-			break;
-		case 6 : 
-			vue.setBackground(new Color(255, 0, 0, 110));
-			break;
-		}
+		vue.setBackground(new Color(255, 0, 0, this.intensitePheromones*10));
 	}
 }
