@@ -41,8 +41,8 @@ public class Terrain {
 		point = proie.getPosition();
 		
 		for (Zone z : listeZone) {
-			boolean inZoneX = point.x > z.getPoint().x && point.x < z.getPoint().x + z.getDim().width;
-			boolean inZoneY = point.y > z.getPoint().y && point.y < z.getPoint().y + z.getDim().height;
+			boolean inZoneX = (point.x >= z.getPoint().x) && (point.x <= z.getPoint().x + z.getDim().width);
+			boolean inZoneY = (point.y >= z.getPoint().y) && (point.y <= z.getPoint().y + z.getDim().height);
 			if (inZoneX && inZoneY)
 			{
 				z.addProie(proie);
