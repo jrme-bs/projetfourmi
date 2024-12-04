@@ -46,6 +46,10 @@ public class Fourmiliere {
 		population.add(reine);
 	}
 	
+	public List<Fourmi> getPopulation() {
+		return population;
+	}
+
 	public void etapeDeSimulation(ContexteDeSimulation contexte) {
 		Set<Point> s = new HashSet<Point>();
 

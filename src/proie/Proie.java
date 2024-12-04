@@ -15,6 +15,7 @@ public class Proie {
 	private Point pos;
 	private int poids;
 	private boolean vivante;
+	private int step = 10 ;
 	
 	public Proie(Point pos, int poids)
 	{
@@ -65,19 +66,19 @@ public class Proie {
 		
 		switch (pos) {
 			case 0: {
-				y = y + 30;
+				y = y + step;
 				break;
 			}
 			case 1: {
-				x = x + 30;
+				x = x + step;
 				break;
 			}
 			case 2: {
-				y = y - 30;
+				y = y - step;
 				break;
 			}
 			case 3: {
-				x = x - 30;
+				x = x - step;
 				break;
 			}
 		}

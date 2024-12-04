@@ -13,14 +13,14 @@ import proie.Proie;
 import roles.Reine;
 import vue.ContexteDeSimulation;
 import vue.VueFourmiliere;
-
+import zone.Zone;
 
 public class Terrain {
 	protected Point pos;
 	protected Dimension dim;
 	Fourmiliere fourmiliere;
-	List<Proie> ListeProie = new ArrayList<>();
-	Proie proie;
+	List<Proie> listeProie = new ArrayList<Proie>();
+	List<Zone> listeZone = new ArrayList<Zone>();
 	
 	public Point getPos() {
 		return this.pos;
@@ -34,9 +34,60 @@ public class Terrain {
 	public Terrain(Point pos, Dimension dim) {
 		this.pos = pos;
 		this.dim = dim;
+		
+		for(int x = 0 ; x < this.dim.width ; x= x + 30 )
+		{
+			for(int y = 0 ; y < this.dim.height ; y = y + 30)
+			{
+				Point point = new Point(x,y);
+				Dimension dimZone = new Dimension(30,30);
+				Zone zone = new Zone(point,dimZone);
+				this.listeZone.add(zone);
+			}
+		}
+	}
+	
+	public void ajoutProieDansListe(Proie proie) {
+		Point point = new Point();
+		point = proie.getPosition();
+		
+		for (Zone z : listeZone) {
+			boolean inZoneX = point.x > z.getPoint().x && point.x < z.getPoint().x + z.getDim().width;
+			boolean inZoneY = point.y > z.getPoint().y && point.y < z.getPoint().y + z.getDim().height;
+			if (inZoneX && inZoneY)
+			{
+				z.addProie(proie);
+			}
+		}
+	}
+	
+	public void ajoutFourmiDansListe(Fourmi fourmi) {
+		Point point = new Point();
+		point = fourmi.getPos();
+		
+		for (Zone z : listeZone) {
+			boolean inZoneX = point.x > z.getPoint().x && point.x < z.getPoint().x + z.getDim().width;
+			boolean inZoneY = point.y > z.getPoint().y && point.y < z.getPoint().y + z.getDim().height;
+			if (inZoneX && inZoneY)
+			{
+				z.addFourmi(fourmi);
+				if (fourmi.getEtat() instanceof Adulte) {
+					//System.out.println("Fourmis entre dans la zone : " + point);
+				}
+			}
+		}
+	}
+	
+	public void clearListZone() {
+		for (Zone z : listeZone) {
+			z.getListeFourmi().clear();
+			z.getListeProie().clear();
+		}
 	}
 		
 	public void etapeDeSimulation(ContexteDeSimulation contexte) {
+		this.clearListZone();
+		
 		if (fourmiliere == null) {
 			Point p = new Point(this.pos.x + this.dim.width/2 - 30, this.pos.y + this.dim.height/2 - 30);
 			fourmiliere = new Fourmiliere(p);
@@ -57,7 +108,7 @@ public class Terrain {
 		
 		
 		
-		if(ListeProie.isEmpty()){
+		if(listeProie.isEmpty()){
 			for(int i = 0 ; i < 10 ; i++)
 			{
 				int x;
@@ -70,18 +121,23 @@ public class Terrain {
 				poids = rand.nextInt(130);
 				Point p = new Point(x,y);
 				proie = new Proie(p,poids);
-				ListeProie.add(proie);
+				listeProie.add(proie);
 				
 			}
 				
 		}
-		for(Proie p : ListeProie)
+		for(Proie p : listeProie)
 		{
 			contexte.getSimulation().nouvelleProie(p);
 			p.etapeDeSimulation(contexte);
+			
+			this.ajoutProieDansListe(p);
+			
 		}
 		
-		
+		for(Fourmi f : this.fourmiliere.getPopulation()) {
+			this.ajoutFourmiDansListe(f);
+		}
 	}
 
 }

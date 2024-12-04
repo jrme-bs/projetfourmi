@@ -15,7 +15,7 @@ public class Ouvriere extends Role {
 
 	public void etapeDeSimulation(ContexteDeSimulation contexte) {
 		Fourmi fourmi = (Fourmi) contexte.getIndividu();
-		int gap = 5;
+		int gap = 10;
 		int x = fourmi.getPos().x;
 		int y = fourmi.getPos().y;
 		boolean porteProie = false;
