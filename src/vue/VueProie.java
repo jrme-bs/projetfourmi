@@ -11,7 +11,6 @@ public class VueProie extends VueElement {
 
 	Proie proie;
 	
-	
 	public Proie getProie()
 	{
 		return proie;
@@ -33,11 +32,14 @@ public class VueProie extends VueElement {
 		}
 			
 	}
+	
+	
+	
 	@Override
 	public void redessine() {
 		// TODO Auto-generated method stub
 		this.setLocation(this.proie.getPosition());
-		
+		this.proie.initialise(this);
 	}
 
 }

@@ -9,6 +9,8 @@ import java.util.Random;
 
 import vue.ContexteDeSimulation;
 import vue.Simulation;
+import vue.VueIndividu;
+import vue.VueProie;
 import zone.Zone;
 import etresVivants.Fourmi;
 import terrain.Terrain;
@@ -22,6 +24,10 @@ public class Proie {
 	private boolean vivante;
 	private int step = 5;
 	private boolean dragged;
+	private boolean chasse;
+	private int sante;
+	
+	private boolean changementCouleurOne = false;
 	
 	public Proie(Point pos, int poids)
 	{
@@ -29,7 +35,8 @@ public class Proie {
 		this.poids = poids;
 		this.vivante = true;
 		this.dragged = false;
-		
+		this.chasse = false;
+		this.sante = 10;
 	}
 
 	public Point getPosition()
@@ -47,10 +54,30 @@ public class Proie {
 	{
 		return poids;
 	}
+	
 	public boolean getVivante()
 	{
 		return this.vivante;
 	}
+	
+	
+	
+	public boolean isDragged() {
+		return dragged;
+	}
+
+	public void setDragged(boolean dragged) {
+		this.dragged = dragged;
+	}
+
+	public boolean getChasse() {
+		return chasse;
+	}
+
+	public void setChasse(boolean chasse) {
+		this.chasse = chasse;
+	}
+
 	public void tueProie()
 	{
 		this.vivante = false;
@@ -70,24 +97,19 @@ public class Proie {
 		
 	}
 	
+	// Fonctionne
 	public void trouveFourmiDrag(ContexteDeSimulation contexte)
 	{
-		
-		Simulation curSim = contexte.getSimulation();
-		Terrain curTerrain = curSim.getTerrain();
-		List<Zone> curListZone = curTerrain.getListeZone();
-		
-		for (Zone z : curListZone) {
-			for (Proie p : z.getListeProie()) {
-				if (p.equals(this)) {
-					zone = z ;
-				}
+		for (Fourmi f : zone.getListeFourmi()) {
+			if (f.isDragged() == false) {
+				fourmi = f;
+			}else {
+				System.out.println("Dragg déjà");
 			}
 		}
-		fourmi = (Fourmi) zone.getListeFourmi().get(0);
-		dragged = true;
 	}
 	
+	// Fonctionne
 	public Point dragProie()
 	{
 		Point p = fourmi.getPos();
@@ -100,7 +122,7 @@ public class Proie {
 		int x = this.getPosition().x;
 		int y = this.getPosition().y;
 		
-		if(this.getVivante())
+		if(this.getVivante() && chasse == false)
 		{
 			
 			int pos;
@@ -125,23 +147,48 @@ public class Proie {
 					break;
 				}
 			}
-		}
-		else
-		{
+		}else if (chasse) {
+			// ne bouge plus s'il se fait chasser et baisse la vie de la proie
+			if (sante > 0) {
+				sante--;
+			}else {
+				this.chasse = false;
+				this.tueProie();
+				// trouve la fourmi et la met en instance de proie
+				this.trouveFourmiDrag(contexte);
+				this.dragged = true;
+				this.fourmi.setDragged(true);
+				// ne met pas la chasse à false ici sinon la fourmi peut partir de la zone avant de commencer à porter
+			}
+		}else{
+			// Fonctionne mais la fourmis et la proie disparaît visuellement
+			// cette fourmi porte la proie
 			if (dragged) {
 				Point point = this.dragProie();
+				this.fourmi.setChasse(false);
 				x = point.x;
 				y = point.y;
-				
-			}else {
-				this.trouveFourmiDrag(contexte);
 			}
-			
 		}
 
 		this.setPosition(new Point(x,y));
 		
-}
+	}
+	
+	// Changement de couleur de la proie lorsqu'elle meurt (normalement)
+	public void initialise(VueProie vue) {
+		if (this.getVivante() == false && this.changementCouleurOne == false) {
+			vue.setBackground(Color.black);
+			this.changementCouleurOne = true;
+		}
+	}
+
+	public void setZone(Zone zone2) {
+		this.zone = zone2;
+	}
+	
+	
+	
 }
 	
 

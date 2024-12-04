@@ -4,12 +4,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.util.List;
+
 import java.util.ArrayList;
 
 import etresVivants.Fourmi;
 import proie.Proie;
 import vue.ContexteDeSimulation;
-import vue.VueIndividu;
 import vue.VueZone;
 
 public class Zone {
@@ -71,21 +71,23 @@ public class Zone {
 	
 	public void addFourmi(Fourmi fourmi)
 	{
-		this.listeFourmi.add(fourmi);
+		if (!this.listeFourmi.contains(fourmi)) {
+			this.listeFourmi.add(fourmi);
+		}
 		if(fourmi.getEtat().deposePheromone() && this.intensitePheromones < 15) {
 			this.intensitePheromones++;
 		}
 	}
-
-	@Override
-	public String toString() {
-		return "Zone [point=" + point + ", dim=" + dim + "]";
-	}
 	
 	public void etapeDeSimulation(ContexteDeSimulation contexte) {
 		jours++;
-		this.clearListZone();
+		// stop le mouvement des proies et fourmis dans une même zone et les considères en mode chasse
+		boolean test = this.chasseEnCours();
+		if (!test) {
+			this.clearListZone();
+		}
 		this.updateIntensite();
+		
 	}
 	
 	public void clearListZone() {
@@ -108,5 +110,47 @@ public class Zone {
 		return intensitePheromones;
 	}
 	
-	
+	// défini si une zone est en mode chasse
+	public boolean chasseEnCours() {
+		
+		if (listeProie.isEmpty() || listeFourmi.isEmpty()) {
+	        return false;
+	    }
+		
+		int cpt = 0;
+		
+		for (Fourmi f : listeFourmi) {
+            if (!f.isDragged()) {
+                f.setChasse(true);
+            }else {
+            	cpt++;
+            }
+        }
+
+	    boolean proieVivante = false;
+	    
+	    if (cpt != listeFourmi.size()) {
+	    	for (Proie p : listeProie) {
+		        if (p.getVivante()) {
+		            proieVivante = true;
+		            p.setChasse(true);
+		        }
+		    }
+	    }
+		    
+	    if (!proieVivante) {
+	        for (Fourmi f : listeFourmi) {
+	            f.setChasse(false);
+	        }
+	        return false;
+	    }
+
+	    return true;
+		
+	}
+
+	@Override
+	public String toString() {
+		return "Zone [listeProie=" + listeProie + ", listeFourmi=" + listeFourmi + "]";
+	}
 }

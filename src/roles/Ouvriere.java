@@ -22,14 +22,13 @@ public class Ouvriere extends Role {
 		int gap = 10;
 		int x = fourmi.getPos().x;
 		int y = fourmi.getPos().y;
-		boolean chasse = false;
-		boolean dragged = false;
 		
 		Point deplacement = new Point();
 		
-		if (dragged && chasse == false) {
-			deplacement = this.detectPheromone(contexte, fourmi, x, y, gap);
-		}else if (chasse && dragged == false){
+		if (fourmi.isDragged() && fourmi.isChasse() == false) {
+			//deplacement = this.detectPheromone(contexte, fourmi, x, y, gap);
+			deplacement = this.mouvementRandom(x, y, gap);
+		}else if (fourmi.isChasse() && fourmi.isDragged() == false){
 			
 		}else {
 			deplacement = this.mouvementRandom(x, y, gap);

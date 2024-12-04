@@ -37,7 +37,7 @@ public class Adulte extends Etat {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	public Role  getRole() {
+	public Role getRole() {
 		return this.role;
 	}
 

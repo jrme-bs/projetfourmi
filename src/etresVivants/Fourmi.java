@@ -22,11 +22,35 @@ public class Fourmi extends Individu {
 	private Etat etat;
 	private int age;
 	
+	private boolean chasse;
+	private boolean dragged;
+	
 	public Fourmi(Point point) {
 		this.setAge(0);
 		this.setEtat(new Oeuf());
 		this.setPos(point);
+		this.chasse = false;
+		this.dragged = false;
 	}
+	
+	
+	public boolean isChasse() {
+		return chasse;
+	}
+
+	public void setChasse(boolean chasse) {
+		this.chasse = chasse;
+	}
+
+	public boolean isDragged() {
+		return dragged;
+	}
+
+	public void setDragged(boolean dragged) {
+		this.dragged = dragged;
+	}
+
+
 
 	public int getDureeDeVie() {
 		return dureeDeVie;
