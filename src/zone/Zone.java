@@ -94,7 +94,7 @@ public class Zone {
 	}
 	
 	public void updateIntensite() {
-		// tout les 15 jours on reduit l'intensité
+		// tout les 15 jours on reduit l'intensitï¿½
 		if(jours % 15 == 0 && this.intensitePheromones > 0) {
 			this.intensitePheromones--;
 		}
@@ -103,4 +103,10 @@ public class Zone {
 	public void initialise(VueZone vue) {
 		vue.setBackground(new Color(255, 0, 0, this.intensitePheromones*8));
 	}
+
+	public int getIntensitePheromones() {
+		return intensitePheromones;
+	}
+	
+	
 }

@@ -21,6 +21,7 @@ public class Terrain {
 	Fourmiliere fourmiliere;
 	List<Proie> listeProie = new ArrayList<Proie>();
 	List<Zone> listeZone = new ArrayList<Zone>();
+	int tailleZone = 17;
 	
 	public Point getPos() {
 		return this.pos;
@@ -60,9 +61,6 @@ public class Terrain {
 			if (inZoneX && inZoneY)
 			{
 				z.addFourmi(fourmi);
-				if (fourmi.getEtat() instanceof Adulte) {
-					//System.out.println("Fourmis entre dans la zone : " + point);
-				}
 			}
 		}
 	}
@@ -73,7 +71,6 @@ public class Terrain {
 			z.etapeDeSimulation(contexte);
 		}
 		if (listeZone.isEmpty()) {
-			int tailleZone = 17;
 			for(int x = 0 ; x < this.dim.width ; x= x + tailleZone )
 			{
 				for(int y = 0 ; y < this.dim.height ; y = y + tailleZone)
@@ -142,4 +139,13 @@ public class Terrain {
 		return listeZone;
 	}
 
+	public Dimension getDim() {
+		return dim;
+	}
+
+	public int getTailleZone() {
+		return tailleZone;
+	}
+
+	
 }
