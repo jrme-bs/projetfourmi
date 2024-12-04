@@ -8,17 +8,20 @@ import java.util.List;
 import java.util.Random;
 
 import vue.ContexteDeSimulation;
-import vue.VueProie;
+
 
 public class Proie {
 	
 	private Point pos;
 	private int poids;
+	private boolean vivante;
 	
 	public Proie(Point pos, int poids)
 	{
 		this.pos = pos;
 		this.poids = poids;
+		this.vivante = true;
+		
 	}
 
 	public Point getPosition()
@@ -36,8 +39,20 @@ public class Proie {
 	{
 		return poids;
 	}
-	
+	public boolean getVivante()
+	{
+		return this.vivante;
+	}
+	public void tueProie()
+	{
+		this.vivante = false;
+	}
 
+	public void contactAvecFourmie()
+	{
+		
+	}
+	
 	public void etapeDeSimulation(ContexteDeSimulation contexte) {
 		contexte.setProie(this);
 		
@@ -50,19 +65,19 @@ public class Proie {
 		
 		switch (pos) {
 			case 0: {
-				y = y + 10;
+				y = y + 30;
 				break;
 			}
 			case 1: {
-				x = x + 10;
+				x = x + 30;
 				break;
 			}
 			case 2: {
-				y = y - 10;
+				y = y - 30;
 				break;
 			}
 			case 3: {
-				x = x - 10;
+				x = x - 30;
 				break;
 			}
 		}

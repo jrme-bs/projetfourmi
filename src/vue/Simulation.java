@@ -124,7 +124,9 @@ public class Simulation {
 		VueProie v = new VueProie(proie);
 		this.space.add(v,this.niveau_proie,0);
 		this.space.repaint();
-	}	public void startGraphicAnimation() {
+	}	
+	
+	public void startGraphicAnimation() {
 		GraphicAnimation animation = new GraphicAnimation();
 		animation.start();
 	}

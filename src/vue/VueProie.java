@@ -31,6 +31,7 @@ public class VueProie extends VueElement {
 		{
 			this.setBackground(Color.red);
 		}
+			
 	}
 	@Override
 	public void redessine() {

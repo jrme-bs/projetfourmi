@@ -19,7 +19,7 @@ public class Terrain {
 	protected Point pos;
 	protected Dimension dim;
 	Fourmiliere fourmiliere;
-	List<Proie> ListeProie = new ArrayList<>();;
+	List<Proie> ListeProie = new ArrayList<>();
 	Proie proie;
 	
 	public Point getPos() {
@@ -67,7 +67,7 @@ public class Terrain {
 				Random rand = new Random();
 				x = rand.nextInt(700);
 				y = rand.nextInt(700);
-				poids = rand.nextInt(150);
+				poids = rand.nextInt(130);
 				Point p = new Point(x,y);
 				proie = new Proie(p,poids);
 				ListeProie.add(proie);
