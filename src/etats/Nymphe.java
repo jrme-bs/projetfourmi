@@ -22,7 +22,10 @@ public class Nymphe extends Etat{
 	public void updateBilanEtat(BilanEtat bilan) {
 		bilan.setNbNymphe(bilan.getNbNymphe()+1);
 	}
-	
+	@Override
+	public boolean deposePheromone() {
+		return false;
+	}
 	
 	
 }

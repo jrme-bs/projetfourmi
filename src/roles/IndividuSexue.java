@@ -46,7 +46,10 @@ public class IndividuSexue extends Role {
 			bilan.setNbFemale(bilan.getNbFemale()+1);
 		}
 	}
-
+	@Override
+	public boolean deposePheromone() {
+		return true;
+	}
 
 	
 }

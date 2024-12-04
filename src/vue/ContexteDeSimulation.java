@@ -33,10 +33,6 @@ public class ContexteDeSimulation {
 		this.fourmiliere = fourmiliere;
 	}
 	
-	public void setDeplacement(Point p) {
-		sim.nouveauDeplacement(p);
-	}
-	
 	public Individu getIndividu() {
 		return individu;
 	}

@@ -24,5 +24,8 @@ public class Larve extends Etat{
 		bilan.setNbLarve(bilan.getNbLarve()+1);
 	}
 
-	
+	@Override
+	public boolean deposePheromone() {
+		return false;
+	}
 }

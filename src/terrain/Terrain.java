@@ -34,17 +34,6 @@ public class Terrain {
 	public Terrain(Point pos, Dimension dim) {
 		this.pos = pos;
 		this.dim = dim;
-		
-		for(int x = 0 ; x < this.dim.width ; x= x + 30 )
-		{
-			for(int y = 0 ; y < this.dim.height ; y = y + 30)
-			{
-				Point point = new Point(x,y);
-				Dimension dimZone = new Dimension(30,30);
-				Zone zone = new Zone(point,dimZone);
-				this.listeZone.add(zone);
-			}
-		}
 	}
 	
 	public void ajoutProieDansListe(Proie proie) {
@@ -78,16 +67,24 @@ public class Terrain {
 		}
 	}
 	
-	public void clearListZone() {
-		for (Zone z : listeZone) {
-			z.getListeFourmi().clear();
-			z.getListeProie().clear();
-		}
-	}
 		
 	public void etapeDeSimulation(ContexteDeSimulation contexte) {
-		this.clearListZone();
-		
+		for (Zone z : listeZone) {
+			z.etapeDeSimulation(contexte);
+		}
+		if (listeZone.isEmpty()) {
+			for(int x = 0 ; x < this.dim.width ; x= x + 30 )
+			{
+				for(int y = 0 ; y < this.dim.height ; y = y + 30)
+				{
+					Point point = new Point(x,y);
+					Dimension dimZone = new Dimension(30,30);
+					Zone zone = new Zone(point,dimZone);
+					this.listeZone.add(zone);
+					contexte.getSimulation().nouvelleZone(zone);
+				}
+			}
+		}
 		if (fourmiliere == null) {
 			Point p = new Point(this.pos.x + this.dim.width/2 - 30, this.pos.y + this.dim.height/2 - 30);
 			fourmiliere = new Fourmiliere(p);

@@ -1,5 +1,6 @@
 package zone;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.util.List;
@@ -7,12 +8,17 @@ import java.util.ArrayList;
 
 import etresVivants.Fourmi;
 import proie.Proie;
+import vue.ContexteDeSimulation;
+import vue.VueIndividu;
+import vue.VueZone;
 
 public class Zone {
 	protected Point point;
 	protected Dimension dim;
 	List<Proie> listeProie ;
 	List<Fourmi> listeFourmi;
+	int intensitePheromones = 0;
+	int jours = 0;
 	
 	public Zone(Point point, Dimension dim)
 	{
@@ -25,7 +31,7 @@ public class Zone {
 	public Point getPoint() {
 		return point;
 	}
-
+	
 
 	public void setPoint(Point point) {
 		this.point = point;
@@ -66,6 +72,9 @@ public class Zone {
 	public void addFourmi(Fourmi fourmi)
 	{
 		this.listeFourmi.add(fourmi);
+		if(fourmi.getEtat().deposePheromone()) {
+			this.intensitePheromones++;
+		}
 	}
 
 	@Override
@@ -73,5 +82,47 @@ public class Zone {
 		return "Zone [point=" + point + ", dim=" + dim + "]";
 	}
 	
+	public void etapeDeSimulation(ContexteDeSimulation contexte) {
+		jours++;
+		this.clearListZone();
+		this.updateIntensite();
+	}
 	
+	public void clearListZone() {
+		getListeFourmi().clear();
+		getListeProie().clear();
+	}
+	
+	public void updateIntensite() {
+		// tout les 10 jours on reduit l'intensité
+		if(jours % 5 == 0) {
+			this.intensitePheromones--;
+		}
+	}
+	
+	public void initialise(VueZone vue) {
+		switch(intensitePheromones) {
+		case 0 :
+			vue.setBackground(new Color(255, 0, 0, 0));
+			break;
+		case 1 :
+			vue.setBackground(new Color(255, 0, 0, 10));
+			break;
+		case 2 :
+			vue.setBackground(new Color(255, 0, 0, 30));
+			break;
+		case 3 :
+			vue.setBackground(new Color(255, 0, 0, 50));
+			break;
+		case 4 : 
+			vue.setBackground(new Color(255, 0, 0, 70));
+			break;
+		case 5 : 
+			vue.setBackground(new Color(255, 0, 0, 90));
+			break;
+		case 6 : 
+			vue.setBackground(new Color(255, 0, 0, 110));
+			break;
+		}
+	}
 }

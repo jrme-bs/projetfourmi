@@ -71,7 +71,10 @@ public class Ouvriere extends Role {
 		
 		return new Point(x1,y1);
 	}
-	
+	@Override
+	public boolean deposePheromone() {
+		return true;
+	}
 	
 
 }
