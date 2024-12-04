@@ -4,6 +4,7 @@ public class BilanRole {
 	private int nbReine = 0;
 	private int nbOuvriere = 0;
 	private int nbSoldat = 0;
+	private int nbSexue = 0;
 	private int nbMale = 0;
 	private int nbFemale = 0;
 	
@@ -20,12 +21,14 @@ public class BilanRole {
 	}
 	
 	public void afficheNbRoleFourmiliere() {
+		nbSexue = this.getNbFemale() + this.getNbMale();
 		System.out.println("============================================");
 		System.out.println("Nombre de reine : " + nbReine);
 		System.out.println("Nombre d'ouvrière : " + nbOuvriere);
 		System.out.println("Nombre de soldat : " + nbSoldat);
+		System.out.println("\nNombre de fourmi sexue : " + nbSexue);
 		System.out.println("Nombre de male : " + nbMale);
-		System.out.println("Nombre de female : " + nbFemale);
+		System.out.println("Nombre de femelle : " + nbFemale);
 		System.out.println("============================================");
 		
 		clear();
@@ -70,4 +73,14 @@ public class BilanRole {
 	public void setNbFemale(int nbFemale) {
 		this.nbFemale = nbFemale;
 	}
+
+	public int getNbSexue() {
+		return nbSexue;
+	}
+
+	public void setNbSexue(int nbSexue) {
+		this.nbSexue = nbSexue;
+	}
+	
+	
 }

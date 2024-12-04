@@ -57,8 +57,8 @@ public class Fourmiliere {
 				contexte.setDeplacement(fourmi.getPos());
 				s.add(fourmi.getPos());
 			}
-			fourmi.editNbRole(bilanRole);
 			fourmi.editNbEtat(bilanEtat);
+			fourmi.editNbRole(bilanRole);
 			fourmi.etapeDeSimulation(contexte);
 		}
 		bilanEtat.afficheNbEtatFourmiliere();
