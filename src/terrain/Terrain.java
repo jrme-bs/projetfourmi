@@ -116,8 +116,8 @@ public class Terrain {
 				int poids ;
 				Proie proie;
 				Random rand = new Random();
-				x = rand.nextInt(700);
-				y = rand.nextInt(700);
+				x = rand.nextInt(500);
+				y = rand.nextInt(500);
 				poids = rand.nextInt(130);
 				Point p = new Point(x,y);
 				proie = new Proie(p,poids);
@@ -138,6 +138,10 @@ public class Terrain {
 		for(Fourmi f : this.fourmiliere.getPopulation()) {
 			this.ajoutFourmiDansListe(f);
 		}
+	}
+
+	public List<Zone> getListeZone() {
+		return listeZone;
 	}
 
 }
