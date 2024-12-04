@@ -22,6 +22,9 @@ public class Oeuf extends Etat{
 	public void updateBilanEtat(BilanEtat bilan) {
 		bilan.setNbOeuf(bilan.getNbOeuf()+1);
 	}
-	
+	@Override
+	public boolean deposePheromone() {
+		return false;
+	}
 	
 }

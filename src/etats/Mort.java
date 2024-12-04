@@ -26,6 +26,9 @@ public class Mort extends Etat{
 	public void updateBilanEtat(BilanEtat tan) {
 		tan.setNbMort(tan.getNbMort()+1);
 	}
-
+	@Override
+	public boolean deposePheromone() {
+		return false;
+	}
 	
 }

@@ -29,5 +29,9 @@ public class Reine extends Role{
 	public void updateBilanRole(BilanRole bilan) {
 		bilan.setNbReine(bilan.getNbReine()+1);
 	}
+	@Override
+	public boolean deposePheromone() {
+		return false;
+	}
 
 }

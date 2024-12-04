@@ -13,6 +13,10 @@ public class Soldat extends Role{
 	public void updateBilanRole(BilanRole bilan) {
 		bilan.setNbSoldat(bilan.getNbSoldat()+1);
 	}
-
+	
+	@Override
+	public boolean deposePheromone() {
+		return false;
+	}
 
 }

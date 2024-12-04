@@ -19,6 +19,7 @@ import etresVivants.Individu;
 import fourmiliere.Fourmiliere;
 import nicellipse.component.NiSpace;
 import terrain.Terrain;
+import zone.Zone;
 import proie.Proie;
 
 public class Simulation {
@@ -114,10 +115,6 @@ public class Simulation {
 		this.space.add(v,this.niveau_individu,0);		
 		this.space.repaint();
 	}
-	public void nouveauDeplacement(Point p) {
-		VueDeplacement v = new VueDeplacement(p);
-		this.space.add(v,4,0);
-	}
 	
 	public void nouvelleProie(Proie proie)
 	{
@@ -125,6 +122,12 @@ public class Simulation {
 		this.space.add(v,this.niveau_proie,0);
 		this.space.repaint();
 	}	
+	
+	public void nouvelleZone(Zone zone) {
+		VueZone v = new VueZone(zone);
+		this.space.add(v,this.niveau_proie+1,0);
+		this.space.repaint();
+	}
 	
 	public void startGraphicAnimation() {
 		GraphicAnimation animation = new GraphicAnimation();
@@ -160,4 +163,6 @@ public class Simulation {
 		Simulation simulation = new Simulation();
 		simulation.startGraphicAnimation();
 	}
+
+	
 }
