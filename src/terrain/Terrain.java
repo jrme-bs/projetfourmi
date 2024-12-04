@@ -88,7 +88,7 @@ public class Terrain {
 		if (fourmiliere == null) {
 			Point p = new Point(this.pos.x + this.dim.width/2 - 30, this.pos.y + this.dim.height/2 - 30);
 			fourmiliere = new Fourmiliere(p);
-			Point posReine = new Point(p.x + 15, p.y + 15);
+			Point posReine = new Point(p.x + 40, p.y + 40);
 			Fourmi laReine = new Fourmi(posReine);
 
 			laReine.setAge(30);
