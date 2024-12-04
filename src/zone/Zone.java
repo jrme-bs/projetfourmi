@@ -72,7 +72,7 @@ public class Zone {
 	public void addFourmi(Fourmi fourmi)
 	{
 		this.listeFourmi.add(fourmi);
-		if(fourmi.getEtat().deposePheromone() && this.intensitePheromones < 10) {
+		if(fourmi.getEtat().deposePheromone() && this.intensitePheromones < 15) {
 			this.intensitePheromones++;
 		}
 	}
@@ -94,13 +94,13 @@ public class Zone {
 	}
 	
 	public void updateIntensite() {
-		// tout les 10 jours on reduit l'intensité
-		if(jours % 5 == 0 && this.intensitePheromones > 0) {
+		// tout les 15 jours on reduit l'intensité
+		if(jours % 15 == 0 && this.intensitePheromones > 0) {
 			this.intensitePheromones--;
 		}
 	}
 	
 	public void initialise(VueZone vue) {
-		vue.setBackground(new Color(255, 0, 0, this.intensitePheromones*10));
+		vue.setBackground(new Color(255, 0, 0, this.intensitePheromones*8));
 	}
 }

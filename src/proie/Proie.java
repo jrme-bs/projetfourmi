@@ -20,7 +20,7 @@ public class Proie {
 	private Point pos;
 	private int poids;
 	private boolean vivante;
-	private int step = 10 ;
+	private int step = 5;
 	private boolean dragged;
 	
 	public Proie(Point pos, int poids)

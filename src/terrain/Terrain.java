@@ -73,12 +73,13 @@ public class Terrain {
 			z.etapeDeSimulation(contexte);
 		}
 		if (listeZone.isEmpty()) {
-			for(int x = 0 ; x < this.dim.width ; x= x + 30 )
+			int tailleZone = 17;
+			for(int x = 0 ; x < this.dim.width ; x= x + tailleZone )
 			{
-				for(int y = 0 ; y < this.dim.height ; y = y + 30)
+				for(int y = 0 ; y < this.dim.height ; y = y + tailleZone)
 				{
 					Point point = new Point(x,y);
-					Dimension dimZone = new Dimension(30,30);
+					Dimension dimZone = new Dimension(tailleZone,tailleZone);
 					Zone zone = new Zone(point,dimZone);
 					this.listeZone.add(zone);
 					contexte.getSimulation().nouvelleZone(zone);
