@@ -41,8 +41,8 @@ public class Terrain {
 		point = proie.getPosition();
 		
 		for (Zone z : listeZone) {
-			boolean inZoneX = point.x > z.getPoint().x && point.x < z.getPoint().x + z.getDim().width;
-			boolean inZoneY = point.y > z.getPoint().y && point.y < z.getPoint().y + z.getDim().height;
+			boolean inZoneX = (point.x >= z.getPoint().x) && (point.x <= z.getPoint().x + z.getDim().width);
+			boolean inZoneY = (point.y >= z.getPoint().y) && (point.y <= z.getPoint().y + z.getDim().height);
 			if (inZoneX && inZoneY)
 			{
 				z.addProie(proie);
@@ -88,7 +88,7 @@ public class Terrain {
 		if (fourmiliere == null) {
 			Point p = new Point(this.pos.x + this.dim.width/2 - 30, this.pos.y + this.dim.height/2 - 30);
 			fourmiliere = new Fourmiliere(p);
-			Point posReine = new Point(p.x + 15, p.y + 15);
+			Point posReine = new Point(p.x + 40, p.y + 40);
 			Fourmi laReine = new Fourmi(posReine);
 
 			laReine.setAge(30);
@@ -113,8 +113,8 @@ public class Terrain {
 				int poids ;
 				Proie proie;
 				Random rand = new Random();
-				x = rand.nextInt(700);
-				y = rand.nextInt(700);
+				x = rand.nextInt(500);
+				y = rand.nextInt(500);
 				poids = rand.nextInt(130);
 				Point p = new Point(x,y);
 				proie = new Proie(p,poids);
@@ -135,6 +135,10 @@ public class Terrain {
 		for(Fourmi f : this.fourmiliere.getPopulation()) {
 			this.ajoutFourmiDansListe(f);
 		}
+	}
+
+	public List<Zone> getListeZone() {
+		return listeZone;
 	}
 
 }
