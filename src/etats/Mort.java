@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 
 import trace.BilanEtat;
+import trace.BilanRole;
 import vue.ContexteDeSimulation;
 import vue.VueIndividu;
 
@@ -29,6 +30,10 @@ public class Mort extends Etat{
 	@Override
 	public boolean deposePheromone() {
 		return false;
+	}
+
+	@Override
+	public void updateBilanRole(BilanRole bilan) {		
 	}
 	
 }

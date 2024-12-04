@@ -9,6 +9,7 @@ import roles.Ouvriere;
 import roles.Role;
 import roles.Soldat;
 import trace.BilanEtat;
+import trace.BilanRole;
 import vue.ContexteDeSimulation;
 import vue.VueIndividu;
 
@@ -57,6 +58,11 @@ public class Adulte extends Etat {
 	@Override
 	public boolean deposePheromone() {
 		return this.getRole().deposePheromone();
+	}
+
+	@Override
+	public void updateBilanRole(BilanRole bilan) {
+		this.getRole().updateBilanRole(bilan);
 	}
 	
 }

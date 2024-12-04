@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import trace.BilanEtat;
+import trace.BilanRole;
 import vue.ContexteDeSimulation;
 import vue.VueIndividu;
 
@@ -25,6 +26,10 @@ public class Nymphe extends Etat{
 	@Override
 	public boolean deposePheromone() {
 		return false;
+	}
+
+	@Override
+	public void updateBilanRole(BilanRole bilan) {		
 	}
 	
 	
