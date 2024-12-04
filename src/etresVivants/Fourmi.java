@@ -91,9 +91,7 @@ public class Fourmi extends Individu {
 	}
 	
 	public void editNbRole(BilanRole bilan) {
-		if (etat instanceof Adulte) {
-			((Adulte) etat).getRole().updateBilanRole(bilan);
-		}
+		this.getEtat().updateBilanRole(bilan);
 	}
 
 }
