@@ -48,7 +48,6 @@ public class Terrain {
 			{
 				if (!(z.getListeProie().contains(proie))) {
 					z.addProie(proie);
-					proie.setZone(z);
 				}
 				
 			}

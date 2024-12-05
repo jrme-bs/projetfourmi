@@ -23,7 +23,7 @@ public class Ouvriere extends Role {
 		int x = fourmi.getPos().x;
 		int y = fourmi.getPos().y;
 		
-		Point deplacement = new Point();
+		Point deplacement = new Point(x,y);
 		
 		if (fourmi.isDragged() && fourmi.isChasse() == false) {
 			//deplacement = this.detectPheromone(contexte, fourmi, x, y, gap);
@@ -41,7 +41,7 @@ public class Ouvriere extends Role {
 		bilan.setNbOuvriere(bilan.getNbOuvriere()+1);
 	}
 	
-	public Point detectPheromone(ContexteDeSimulation contexte, Fourmi fourmi, int x, int y, int gap) {
+	/*public Point detectPheromone(ContexteDeSimulation contexte, Fourmi fourmi, int x, int y, int gap) {
 		
 		int x1 = x;
 		int y1 = y;
@@ -102,7 +102,7 @@ public class Ouvriere extends Role {
 		
 		return new Point(x1, y1);
 	}
-	
+	*/
 	public Point mouvementRandom(int x, int y, int gap) {
 		int x1 = x, y1 = y;
 		
@@ -126,10 +126,13 @@ public class Ouvriere extends Role {
 				x1 = x - gap;
 				break;
 			}
+			
 		}
 		
 		return new Point(x1,y1);
 	}
+	
+	
 	@Override
 	public boolean deposePheromone() {
 		return true;

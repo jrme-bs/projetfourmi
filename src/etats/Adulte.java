@@ -47,7 +47,7 @@ public class Adulte extends Etat {
 
 	public void initialise(VueIndividu vue ) {
 		vue.setBackground(Color.blue);
-		vue.setDimension(new Dimension(3, 3));
+		vue.setDimension(new Dimension(6, 6));
 	}
 
 	@Override

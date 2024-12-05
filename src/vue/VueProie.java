@@ -24,7 +24,6 @@ public class VueProie extends VueElement {
 		if(proie.getPoids() < 120)
 		{
 			this.setBackground((Color.green));
-
 		}
 		else
 		{
@@ -37,9 +36,8 @@ public class VueProie extends VueElement {
 	
 	@Override
 	public void redessine() {
-		// TODO Auto-generated method stub
 		this.setLocation(this.proie.getPosition());
-		this.proie.initialise(this);
+		//this.proie.initialise(this);
 	}
 
 }

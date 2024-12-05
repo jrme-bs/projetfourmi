@@ -18,7 +18,6 @@ import terrain.Terrain;
 public class Proie {
 	
 	private Fourmi fourmi;
-	private Zone zone;
 	private Point pos;
 	private int poids;
 	private boolean vivante;
@@ -29,7 +28,7 @@ public class Proie {
 	
 	private boolean changementCouleurOne = false;
 	
-	public Proie(Point pos, int poids)
+	public Proie(Point pos, int poiads)
 	{
 		this.pos = pos;
 		this.poids = poids;
@@ -100,19 +99,42 @@ public class Proie {
 	// Fonctionne
 	public void trouveFourmiDrag(ContexteDeSimulation contexte)
 	{
-		for (Fourmi f : zone.getListeFourmi()) {
-			if (f.isDragged() == false) {
-				fourmi = f;
-			}else {
-				System.out.println("Dragg déjà");
+		
+		Simulation sim = contexte.getSimulation();
+		Terrain ter = sim.getTerrain();
+		List<Zone> lz = ter.getListeZone();
+		Zone curZone = null;
+		
+		for (Zone z : lz) {
+			if (z.getListeProie().contains(this)) {
+				curZone = z;
+				System.out.println("Zone trouvé");
 			}
 		}
+		
+		if (curZone != null) {
+			System.out.println("Zone liste fourmiz" + curZone);
+			for (int i = 0; i < curZone.getListeFourmi().size(); i++) {
+				
+			}
+			for (Fourmi f : curZone.getListeFourmi()) {
+				if (f.isDragged() == false) {
+					fourmi = f;
+				}else {
+					System.out.println("Dragg déjà");
+				}
+			}
+		}else {
+			System.out.println("zone non trouvé");
+		}
+		
 	}
 	
 	// Fonctionne
 	public Point dragProie()
 	{
 		Point p = fourmi.getPos();
+		System.out.println("Pos drag : " + p);
 		return p;
 	}
 	
@@ -166,13 +188,13 @@ public class Proie {
 			if (dragged) {
 				Point point = this.dragProie();
 				this.fourmi.setChasse(false);
-				x = point.x;
-				y = point.y;
+				x = point.x - 2;
+				y = point.y - 7;
+				System.out.println(point);
 			}
 		}
-
+		// déplacement de la proie
 		this.setPosition(new Point(x,y));
-		
 	}
 	
 	// Changement de couleur de la proie lorsqu'elle meurt (normalement)
@@ -180,15 +202,10 @@ public class Proie {
 		if (this.getVivante() == false && this.changementCouleurOne == false) {
 			vue.setBackground(Color.black);
 			this.changementCouleurOne = true;
+			System.out.println("ICIIICII");
 		}
 	}
 
-	public void setZone(Zone zone2) {
-		this.zone = zone2;
-	}
-	
-	
-	
 }
 	
 
