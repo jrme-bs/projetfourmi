@@ -35,5 +35,11 @@ public class Mort extends Etat{
 	@Override
 	public void updateBilanRole(BilanRole bilan) {		
 	}
+
+	@Override
+	public boolean mangeNourriture() {
+		return false;
+	}
+
 	
 }

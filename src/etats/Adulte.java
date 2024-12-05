@@ -64,5 +64,11 @@ public class Adulte extends Etat {
 	public void updateBilanRole(BilanRole bilan) {
 		this.getRole().updateBilanRole(bilan);
 	}
+
+
+	@Override
+	public boolean mangeNourriture() {
+		return true;
+	}
 	
 }

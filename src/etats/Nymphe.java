@@ -31,6 +31,14 @@ public class Nymphe extends Etat{
 	@Override
 	public void updateBilanRole(BilanRole bilan) {		
 	}
+
+	@Override
+	public boolean mangeNourriture() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
 	
 	
 }
