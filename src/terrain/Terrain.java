@@ -104,8 +104,6 @@ public class Terrain {
 		}
 		fourmiliere.etapeDeSimulation(contexte);
 		
-		
-		
 		if(listeProie.isEmpty()){
 			for(int i = 0 ; i < 10 ; i++)
 			{

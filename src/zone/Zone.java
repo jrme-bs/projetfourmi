@@ -120,29 +120,19 @@ public class Zone {
 		int cpt = 0;
 		
 		for (Fourmi f : listeFourmi) {
-            if (!f.isDragged()) {
+            if (!f.isDragged() && !(f.getEtat().toString() == "Mort")) {
                 f.setChasse(true);
             }else {
             	cpt++;
             }
         }
-
-	    boolean proieVivante = false;
 	    
 	    if (cpt != listeFourmi.size()) {
 	    	for (Proie p : listeProie) {
-		        if (p.getVivante()) {
-		            proieVivante = true;
-		            p.setChasse(true);
-		        }
+	    		p.setChasse(true);
 		    }
-	    }
-		    
-	    if (!proieVivante) {
-	        for (Fourmi f : listeFourmi) {
-	            f.setChasse(false);
-	        }
-	        return false;
+	    }else {
+	    	return false;
 	    }
 
 	    return true;

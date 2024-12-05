@@ -33,4 +33,10 @@ public class Larve extends Etat{
 	@Override
 	public void updateBilanRole(BilanRole bilan) {		
 	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Larve";
+	}
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import etats.Mort;
 import vue.ContexteDeSimulation;
 import vue.Simulation;
 import vue.VueIndividu;
@@ -118,10 +119,10 @@ public class Proie {
 				
 			}
 			for (Fourmi f : curZone.getListeFourmi()) {
-				if (f.isDragged() == false) {
+				if (f.isDragged() == false && f.getEtat().toString().equals("Adulte")) {
 					fourmi = f;
 				}else {
-					System.out.println("Dragg déjà");
+					System.out.println("Dragg déjà ou pas vivant");
 				}
 			}
 		}else {
@@ -182,7 +183,13 @@ public class Proie {
 				this.fourmi.setDragged(true);
 				// ne met pas la chasse à false ici sinon la fourmi peut partir de la zone avant de commencer à porter
 			}
-		}else{
+		}else if (this.fourmi.getEtat().toString().equals("Mort") && this.getVivante() == false){
+			//this.fourmi.setDragged(false);
+			this.setDragged(false);
+			this.trouveFourmiDrag(contexte);
+			System.out.println("Fourmis qui porte à dead ça");
+			
+		}else {
 			// Fonctionne mais la fourmis et la proie disparaît visuellement
 			// cette fourmi porte la proie
 			if (dragged) {
@@ -202,7 +209,6 @@ public class Proie {
 		if (this.getVivante() == false && this.changementCouleurOne == false) {
 			vue.setBackground(Color.black);
 			this.changementCouleurOne = true;
-			System.out.println("ICIIICII");
 		}
 	}
 

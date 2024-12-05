@@ -37,7 +37,7 @@ public class VueProie extends VueElement {
 	@Override
 	public void redessine() {
 		this.setLocation(this.proie.getPosition());
-		//this.proie.initialise(this);
+		this.proie.initialise(this);
 	}
 
 }

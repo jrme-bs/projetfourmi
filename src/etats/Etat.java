@@ -13,4 +13,5 @@ public abstract class Etat {
 	public abstract void updateBilanEtat(BilanEtat tan);
 	public abstract boolean deposePheromone();
 	public abstract void updateBilanRole(BilanRole bilan);
+	public abstract String toString();
 }
