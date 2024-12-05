@@ -2,7 +2,9 @@ package terrain;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.awt.Dimension;
 
@@ -20,8 +22,13 @@ public class Terrain {
 	protected Dimension dim;
 	Fourmiliere fourmiliere;
 	List<Proie> listeProie = new ArrayList<Proie>();
-	List<Zone> listeZone = new ArrayList<Zone>();
+	//List<Zone> listeZone = new ArrayList<Zone>();
 	int tailleZone = 17;
+	// nombre de colonne et de ligne pour mieu récupérer les zones dans la map
+	private int nbCol;
+	private int nbLigne;
+	
+	Map<Integer, Zone> mapZone = new HashMap<Integer, Zone>();
 	
 	public Point getPos() {
 		return this.pos;
@@ -35,13 +42,15 @@ public class Terrain {
 	public Terrain(Point pos, Dimension dim) {
 		this.pos = pos;
 		this.dim = dim;
+		this.nbCol = dim.width / tailleZone;
+		this.nbLigne = dim.height / tailleZone;
 	}
 	
 	public void ajoutProieDansListe(Proie proie) {
 		Point point = new Point();
 		point = proie.getPosition();
 		
-		for (Zone z : listeZone) {
+		/*for (Zone z : listeZone) {
 			boolean inZoneX = (point.x >= z.getPoint().x) && (point.x < z.getPoint().x + z.getDim().width);
 			boolean inZoneY = (point.y >= z.getPoint().y) && (point.y < z.getPoint().y + z.getDim().height);
 			if (inZoneX && inZoneY)
@@ -51,6 +60,16 @@ public class Terrain {
 				}
 				
 			}
+		}*/
+		
+		for (Map.Entry<Integer, Zone> entry : mapZone.entrySet()) {
+		    Zone z = entry.getValue();
+		    boolean inZoneX = (point.x >= z.getPoint().x) && (point.x < z.getPoint().x + z.getDim().width);
+			boolean inZoneY = (point.y >= z.getPoint().y) && (point.y < z.getPoint().y + z.getDim().height);
+			if (inZoneX && inZoneY)
+			{
+				z.addProie(proie);
+			}
 		}
 	}
 	
@@ -58,9 +77,19 @@ public class Terrain {
 		Point point = new Point();
 		point = fourmi.getPos();
 		
-		for (Zone z : listeZone) {
+		/*for (Zone z : listeZone) {
 			boolean inZoneX = point.x >= z.getPoint().x && point.x < z.getPoint().x + z.getDim().width;
 			boolean inZoneY = point.y >= z.getPoint().y && point.y < z.getPoint().y + z.getDim().height;
+			if (inZoneX && inZoneY)
+			{
+				z.addFourmi(fourmi);
+			}
+		}*/
+		
+		for (Map.Entry<Integer, Zone> entry : mapZone.entrySet()) {
+		    Zone z = entry.getValue();
+		    boolean inZoneX = (point.x >= z.getPoint().x) && (point.x < z.getPoint().x + z.getDim().width);
+			boolean inZoneY = (point.y >= z.getPoint().y) && (point.y < z.getPoint().y + z.getDim().height);
 			if (inZoneX && inZoneY)
 			{
 				z.addFourmi(fourmi);
@@ -70,10 +99,12 @@ public class Terrain {
 	
 		
 	public void etapeDeSimulation(ContexteDeSimulation contexte) {
-		for (Zone z : listeZone) {
-			z.etapeDeSimulation(contexte);
-		}
-		if (listeZone.isEmpty()) {
+		
+		if (/*this.listeZone.isEmpty() || */this.mapZone.isEmpty()) {
+			
+			int cpt = 1; // index pour la map de zone
+			
+			/*
 			for(int x = 0 ; x < this.dim.width ; x= x + tailleZone )
 			{
 				for(int y = 0 ; y < this.dim.height ; y = y + tailleZone)
@@ -81,11 +112,41 @@ public class Terrain {
 					Point point = new Point(x,y);
 					Dimension dimZone = new Dimension(tailleZone,tailleZone);
 					Zone zone = new Zone(point,dimZone);
-					this.listeZone.add(zone);
+					//this.listeZone.add(zone);
+					this.mapZone.put(cpt, zone);
 					contexte.getSimulation().nouvelleZone(zone);
+					cpt++; // index des zones dans la map
 				}
 			}
+			*/
+			for(int y = 0 ; y < this.dim.height ; y = y + tailleZone)
+			{
+				for(int x = 0 ; x < this.dim.width ; x= x + tailleZone )
+				{
+					Point point = new Point(x,y);
+					Dimension dimZone = new Dimension(tailleZone,tailleZone);
+					Zone zone = new Zone(point,dimZone);
+					//this.listeZone.add(zone);
+					this.mapZone.put(cpt, zone);
+					contexte.getSimulation().nouvelleZone(zone);
+					cpt++; // index des zones dans la map
+				}
+			}
+		}else {
+			/*
+			for (Zone z : listeZone) {
+				z.etapeDeSimulation(contexte);
+			}
+			*/
+			
+			for (Map.Entry<Integer, Zone> entry : mapZone.entrySet()) {
+				// affichage contenu map
+			    //System.out.println("Clé (index): " + entry.getKey() + ", Valeur (zone): " + entry.getValue());
+			    entry.getValue().etapeDeSimulation(contexte);
+			}
 		}
+		
+		
 		if (fourmiliere == null) {
 			Point p = new Point(this.pos.x + this.dim.width/2 - 30, this.pos.y + this.dim.height/2 - 30);
 			fourmiliere = new Fourmiliere(p);
@@ -135,9 +196,16 @@ public class Terrain {
 			this.ajoutFourmiDansListe(f);
 		}
 	}
-
+	
+	/*
 	public List<Zone> getListeZone() {
 		return listeZone;
+	}
+	*/
+	
+
+	public Map<Integer, Zone> getMapZone() {
+		return mapZone;
 	}
 
 	public Dimension getDim() {
@@ -148,5 +216,22 @@ public class Terrain {
 		return tailleZone;
 	}
 
+	public Fourmiliere getFourmiliere() {
+		return fourmiliere;
+	}
+
+	public List<Proie> getListeProie() {
+		return listeProie;
+	}
+
+	public int getNbCol() {
+		return nbCol;
+	}
+
+	public int getNbLigne() {
+		return nbLigne;
+	}
+
+	
 	
 }

@@ -51,5 +51,9 @@ public class IndividuSexue extends Role {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "IndividuSexue";
+	}
 	
 }

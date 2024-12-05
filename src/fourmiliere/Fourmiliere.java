@@ -10,17 +10,24 @@ import java.util.Set;
 
 import etresVivants.Fourmi;
 import proie.Proie;
+import terrain.Terrain;
 import trace.BilanEtat;
 import trace.BilanRole;
 import vue.ContexteDeSimulation;
+import vue.Simulation;
 import vue.VueIndividu;
 
 public class Fourmiliere {
 	private List<Fourmi> population;
 	private List<Point> deplacements;
+	
 	private List<Proie> nourriture;
 	private List<Proie> proiesConsommees;
+	
 	private List<Fourmi> fourmisMortes;
+	
+	private int nourritureTotale;
+	
 	private Point pos;
 	private Dimension dim;
 	private BilanEtat bilanEtat;
@@ -43,6 +50,8 @@ public class Fourmiliere {
 		this.dim = new Dimension(80,80);
 		this.bilanEtat = new BilanEtat();
 		this.bilanRole = new BilanRole();
+		
+		this.nourritureTotale = 0;
 	}
 
 	public void ponte(Fourmi oeuf) {
@@ -69,11 +78,18 @@ public class Fourmiliere {
 		}
 		bilanEtat.afficheNbEtatFourmiliere();
 		bilanRole.afficheNbRoleFourmiliere();
+		
+		ajoutAutoProieNourritureAndConsommee(contexte);
+		// Calcule la nourriture actuelle dans la fourmilière
+		compteNourritureTotaleInstantannee();
+		
+		// remis à 0 pour recalculer après l'étape
+		this.nourritureTotale = 0;
 	}
 	
 	
 	//Pour ajouter les proies 
-	public void addProie(Proie proie) {
+	public void addProieListeNourriture(Proie proie) {
 		this.nourriture.add(proie);
 	}
 	
@@ -150,6 +166,34 @@ public class Fourmiliere {
 		}
 		
 		
+	}
+	
+	// retire une proie de la liste de nourriture
+	public void removeProieListeNourriture(Proie proie) {
+		this.nourriture.remove(proie);
+	}
+	
+	
+	// Check tout le temps et ajoute les proies ayant un poids supérieur à 0
+	// sinon les proies sont déplacé dans les proies consommé
+	public void ajoutAutoProieNourritureAndConsommee(ContexteDeSimulation contexte) {
+		Simulation sim = contexte.getSimulation();
+		Terrain ter = sim.getTerrain();
+		
+		for (Proie p : ter.getListeProie()) {
+			if (p.isFood() == true && p.getPoids() > 0 && p.getVivante() == false) {
+				this.addProieListeNourriture(p);
+			}else if (p.isFood() && p.getVivante() == false && p.getPoids() <= 0){
+				this.removeProieListeNourriture(p);
+				this.proiesConsommees.add(p);
+			}
+		}
+	}
+	
+	public void compteNourritureTotaleInstantannee() {
+		for (Proie p : this.nourriture) {
+			this.nourritureTotale = p.getPoids();
+		}
 	}
 		
 }

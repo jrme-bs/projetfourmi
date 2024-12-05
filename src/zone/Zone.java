@@ -96,8 +96,8 @@ public class Zone {
 	}
 	
 	public void updateIntensite() {
-		// tout les 15 jours on reduit l'intensit�
-		if(jours % 15 == 0 && this.intensitePheromones > 0) {
+		// tout les 5 jours on reduit l'intensit�
+		if(jours % 5 == 0 && this.intensitePheromones > 0) {
 			this.intensitePheromones--;
 		}
 	}
@@ -119,21 +119,23 @@ public class Zone {
 		
 		int cpt = 0;
 		
+		for (Proie p : listeProie) {
+    		if (p.isFood() == false) {
+    			p.setChasse(true);
+    		}else {
+    			cpt++;
+    		}
+	    }
+		
+		if (cpt >= listeProie.size()) {
+			return false;
+		}
+		
 		for (Fourmi f : listeFourmi) {
             if (!f.isDragged() && !(f.getEtat().toString() == "Mort")) {
                 f.setChasse(true);
-            }else {
-            	cpt++;
             }
         }
-	    
-	    if (cpt != listeFourmi.size()) {
-	    	for (Proie p : listeProie) {
-	    		p.setChasse(true);
-		    }
-	    }else {
-	    	return false;
-	    }
 
 	    return true;
 		
@@ -141,6 +143,9 @@ public class Zone {
 
 	@Override
 	public String toString() {
-		return "Zone [listeProie=" + listeProie + ", listeFourmi=" + listeFourmi + "]";
+		return "Zone [point=" + point + ", dim=" + dim + ", listeProie=" + listeProie + ", listeFourmi=" + listeFourmi
+				+ ", intensitePheromones=" + intensitePheromones + "]";
 	}
+
+	
 }
