@@ -109,24 +109,18 @@ public class Proie {
 		for (Zone z : lz) {
 			if (z.getListeProie().contains(this)) {
 				curZone = z;
-				System.out.println("Zone trouvé");
 			}
 		}
 		
 		if (curZone != null) {
-			System.out.println("Zone liste fourmiz" + curZone);
 			for (int i = 0; i < curZone.getListeFourmi().size(); i++) {
 				
 			}
 			for (Fourmi f : curZone.getListeFourmi()) {
 				if (f.isDragged() == false && f.getEtat().toString().equals("Adulte")) {
 					fourmi = f;
-				}else {
-					System.out.println("Dragg déjà ou pas vivant");
 				}
 			}
-		}else {
-			System.out.println("zone non trouvé");
 		}
 		
 	}
@@ -135,7 +129,6 @@ public class Proie {
 	public Point dragProie()
 	{
 		Point p = fourmi.getPos();
-		System.out.println("Pos drag : " + p);
 		return p;
 	}
 	
@@ -187,7 +180,6 @@ public class Proie {
 			//this.fourmi.setDragged(false);
 			this.setDragged(false);
 			this.trouveFourmiDrag(contexte);
-			System.out.println("Fourmis qui porte à dead ça");
 			
 		}else {
 			// Fonctionne mais la fourmis et la proie disparaît visuellement
@@ -197,7 +189,6 @@ public class Proie {
 				this.fourmi.setChasse(false);
 				x = point.x - 2;
 				y = point.y - 7;
-				System.out.println(point);
 			}
 		}
 		// déplacement de la proie
