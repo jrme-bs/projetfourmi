@@ -41,68 +41,7 @@ public class Ouvriere extends Role {
 		bilan.setNbOuvriere(bilan.getNbOuvriere()+1);
 	}
 	
-	/*public Point detectPheromone(ContexteDeSimulation contexte, Fourmi fourmi, int x, int y, int gap) {
-		
-		int x1 = x;
-		int y1 = y;
-		
-		Zone haute = null;
-		Zone basse = null;
-		Zone gauche = null;
-		Zone droite = null;
-		
-		Simulation curSim = contexte.getSimulation();
-		Terrain curTerrain = curSim.getTerrain();
-		List<Zone> listeZone = curTerrain.getListeZone();
-		
-		Zone[] listeZ = (Zone[])listeZone.toArray();
-		
-		int gapColonne = curTerrain.getDimension().height / curTerrain.getTailleZone();
-		
-		for (int i = 0; i < listeZ.length; i++) {
-
-			Fourmi[] listeF = (Fourmi[]) listeZ[i].getListeFourmi().toArray();
-			for (int  j = 0; j < listeF.length; j++) {
-				if (listeF[j].equals(fourmi)) {
-					haute = listeZ[i+1];
-					basse = listeZ[i-1];
-					droite = listeZ[i+gapColonne];
-					gauche = listeZ[i-gapColonne];
-					
-					i = listeZ.length;
-					j = listeF.length;
-				}
-			}
-		}
-		
-		int bas = basse.getIntensitePheromones();
-		int haut = haute.getIntensitePheromones();
-		int g = gauche.getIntensitePheromones();
-		int d = droite.getIntensitePheromones();
-		
-		Random rand = new Random();
-		int probaBas = rand.nextInt(bas);
-		int probaHaut = rand.nextInt(haut);
-		int probaGauche = rand.nextInt(g);
-		int probaDroite = rand.nextInt(d);
-		
-		int max1 = Math.max(probaBas, probaHaut);
-		int max2 = Math.max(probaGauche, probaDroite);
-		int max = Math.max(max1, max2);
-		
-		if (max == probaBas) {
-		    y1 -= gap;
-		} else if (max == probaHaut) {
-		    y1 += gap;
-		} else if (max == probaGauche) {
-		    x1 -= gap;
-		} else if (max == probaDroite) {
-		    x1 += gap;
-		}
-		
-		return new Point(x1, y1);
-	}
-	*/
+	
 	public Point mouvementRandom(int x, int y, int gap) {
 		int x1 = x, y1 = y;
 		

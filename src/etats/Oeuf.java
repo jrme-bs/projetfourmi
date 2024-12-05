@@ -31,11 +31,13 @@ public class Oeuf extends Etat{
 	@Override
 	public void updateBilanRole(BilanRole bilan) {
 	}
-
-	@Override
+@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Oeuf";
+	}@Override
 	public boolean mangeNourriture() {
 		// TODO Auto-generated method stub
 		return false;
-	}
-	
+	}	
 }

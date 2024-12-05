@@ -35,11 +35,14 @@ public class Mort extends Etat{
 	@Override
 	public void updateBilanRole(BilanRole bilan) {		
 	}
-
-	@Override
+@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Mort";
+	}@Override
 	public boolean mangeNourriture() {
 		return false;
-	}
-
+	}	
+	
 	
 }

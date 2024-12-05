@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import etats.Mort;
 import vue.ContexteDeSimulation;
 import vue.Simulation;
 import vue.VueIndividu;
@@ -108,24 +109,18 @@ public class Proie {
 		for (Zone z : lz) {
 			if (z.getListeProie().contains(this)) {
 				curZone = z;
-				System.out.println("Zone trouvé");
 			}
 		}
 		
 		if (curZone != null) {
-			System.out.println("Zone liste fourmiz" + curZone);
 			for (int i = 0; i < curZone.getListeFourmi().size(); i++) {
 				
 			}
 			for (Fourmi f : curZone.getListeFourmi()) {
-				if (f.isDragged() == false) {
+				if (f.isDragged() == false && f.getEtat().toString().equals("Adulte")) {
 					fourmi = f;
-				}else {
-					System.out.println("Dragg déjà");
 				}
 			}
-		}else {
-			System.out.println("zone non trouvé");
 		}
 		
 	}
@@ -134,7 +129,6 @@ public class Proie {
 	public Point dragProie()
 	{
 		Point p = fourmi.getPos();
-		System.out.println("Pos drag : " + p);
 		return p;
 	}
 	
@@ -182,7 +176,12 @@ public class Proie {
 				this.fourmi.setDragged(true);
 				// ne met pas la chasse à false ici sinon la fourmi peut partir de la zone avant de commencer à porter
 			}
-		}else{
+		}else if (this.fourmi.getEtat().toString().equals("Mort") && this.getVivante() == false){
+			//this.fourmi.setDragged(false);
+			this.setDragged(false);
+			this.trouveFourmiDrag(contexte);
+			
+		}else {
 			// Fonctionne mais la fourmis et la proie disparaît visuellement
 			// cette fourmi porte la proie
 			if (dragged) {
@@ -190,7 +189,6 @@ public class Proie {
 				this.fourmi.setChasse(false);
 				x = point.x - 2;
 				y = point.y - 7;
-				System.out.println(point);
 			}
 		}
 		// déplacement de la proie
@@ -202,7 +200,6 @@ public class Proie {
 		if (this.getVivante() == false && this.changementCouleurOne == false) {
 			vue.setBackground(Color.black);
 			this.changementCouleurOne = true;
-			System.out.println("ICIIICII");
 		}
 	}
 
