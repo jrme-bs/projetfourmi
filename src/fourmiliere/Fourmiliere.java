@@ -82,6 +82,8 @@ public class Fourmiliere {
 		ajoutAutoProieNourritureAndConsommee(contexte);
 		// Calcule la nourriture actuelle dans la fourmilière
 		compteNourritureTotaleInstantannee();
+		// Affichage Nourriture actuelle
+		System.out.println("Nourriture totale : " + this.nourritureTotale);
 		
 		// remis à 0 pour recalculer après l'étape
 		this.nourritureTotale = 0;

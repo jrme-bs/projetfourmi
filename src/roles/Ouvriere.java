@@ -77,14 +77,33 @@ public class Ouvriere extends Role {
 		System.out.println("zone B : " + bas);
 		System.out.println("===============================");
 		
-		int pheroD = droite.getIntensitePheromones();
-		int pheroG = gauche.getIntensitePheromones();
-		int pheroH = haut.getIntensitePheromones();
-		int pheroB = bas.getIntensitePheromones();
+		int pheroD = 0;
+		if (droite != null) {
+			pheroD = droite.getIntensitePheromones();
+		}
+		
+		int pheroG = 0;
+		if (gauche != null) {
+			pheroG = gauche.getIntensitePheromones();
+		}
+		int pheroH = 0;
+		if (haut != null) {
+			pheroH = haut.getIntensitePheromones();
+		}
+		int pheroB = 0;
+		if (bas != null) {
+			pheroB = bas.getIntensitePheromones();
+		}
+		
+		if (pheroD == 0 && pheroG == 0 && pheroH == 0 && pheroB == 0) {
+            pheroD = pheroG = pheroH = pheroB = 1;
+        }
 		
 		int totalPhero = pheroD + pheroG + pheroH + pheroB;
 		int x1 = x;
 		int y1 = y;
+		
+		
 		
 		Random rand = new Random();
         int randomValue = rand.nextInt(totalPhero);
@@ -98,19 +117,21 @@ public class Ouvriere extends Role {
         } else if (randomValue < pheroD + pheroG + pheroH) {
         	// haut
             y1 -= gap;
-        } else {
+        } else if (randomValue < pheroD + pheroG + pheroH + pheroB) {
         	// bas
             y1 += gap;
+        }else {
+        	System.out.println("Impossible ICI OUVRIERE PHERO");
         }
         
         int pointFourmX = pointFourmiliere.x + 40;
 		int pointFourmY = pointFourmiliere.y + 40;
 		
 		int tailleCarre = 20; // Taille du carré (par exemple 50x50 pixels)
-	    int limiteMinX = pointFourmiliere.x - tailleCarre / 2;
-	    int limiteMaxX = pointFourmiliere.x + tailleCarre / 2;
-	    int limiteMinY = pointFourmiliere.y - tailleCarre / 2;
-	    int limiteMaxY = pointFourmiliere.y + tailleCarre / 2;
+	    int limiteMinX = pointFourmX - tailleCarre / 2;
+	    int limiteMaxX = pointFourmX + tailleCarre / 2;
+	    int limiteMinY = pointFourmY - tailleCarre / 2;
+	    int limiteMaxY = pointFourmY + tailleCarre / 2;
 
 	    // Vérifier si la nouvelle position (x1, y1) est dans le carré
 	    if (x1 >= limiteMinX && x1 <= limiteMaxX && y1 >= limiteMinY && y1 <= limiteMaxY) {

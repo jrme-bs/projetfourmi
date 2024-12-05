@@ -192,8 +192,9 @@ public class Proie {
 			
 		}if (isFood) {
 			// ne fait plus rien car c'est un garde mangé et la fourmi la dépose
-			fourmi.setDragged(false);
-			fourmi.setChasse(false);
+			this.setDragged(false);
+			this.fourmi.setDragged(false);
+			this.fourmi.setChasse(false);
 			
 		}else {
 			// Fonctionne mais la fourmis et la proie disparaît visuellement
@@ -201,8 +202,8 @@ public class Proie {
 			if (dragged) {
 				Point point = this.dragProie();
 				this.fourmi.setChasse(false);
-				x = point.x - 2;
-				y = point.y - 7;
+				x = point.x;
+				y = point.y;
 			}
 		}
 		// déplacement de la proie
