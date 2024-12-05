@@ -20,6 +20,7 @@ public class Fourmiliere {
 	private List<Point> deplacements;
 	private List<Proie> nourriture;
 	private List<Proie> proiesConsommees;
+	private List<Fourmi> fourmisMortes;
 	private Point pos;
 	private Dimension dim;
 	private BilanEtat bilanEtat;
@@ -37,6 +38,7 @@ public class Fourmiliere {
 		this.population = new ArrayList<>();
 		this.nourriture = new ArrayList<>();
 		this.proiesConsommees = new ArrayList<>();
+		this.fourmisMortes = new ArrayList<>();
 		this.pos = pos;
 		this.dim = new Dimension(80,80);
 		this.bilanEtat = new BilanEtat();
@@ -76,7 +78,7 @@ public class Fourmiliere {
 	}
 	
 	//Methode pour nettoyer les proies qui sont consommées 
-	public void nettoyage()
+	public void nettoyageProies()
 	{
 		for(Proie p : nourriture)
 		{
@@ -91,6 +93,18 @@ public class Fourmiliere {
 		}
 	}
 	
+	//Methode pour ajouter les fourmis mortes dans
+	//la liste fourmisMortes
+	public void nettoyageFourmisMortes()
+	{
+		for(Fourmi f : this.getPopulation())
+		{
+			if(f.getEtat().toString().equals("Mort"))
+			{
+				this.fourmisMortes.add(f);
+			}
+		}
+	}
 	
 	//Pour consommer la quantité demandée par les fourmis
 	public int extraireNourriture(int quantite)
@@ -112,9 +126,10 @@ public class Fourmiliere {
 				return valeurAtteinte;
 			}
 		}
-		this.nettoyage();
+		this.nettoyageProies();
 		return valeurAtteinte;
 	}
+	
 	
 	//Pour nourrir une fourmi : return true si on asseez de nourriture
 	//pour la fourmi et donc elle va survivre

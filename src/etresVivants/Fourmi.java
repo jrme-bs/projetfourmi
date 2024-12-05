@@ -143,7 +143,7 @@ public class Fourmi extends Individu {
 	public int getQuantiteNourriture()
 	{
 		Etat etat = this.getEtat();
-		if(etat instanceof Larve)
+		if(etat.toString().equals("Larve"))
 		{
 			return (int) this.getPoids();
 		}
