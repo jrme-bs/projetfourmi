@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.util.List;
 
+import etats.Mort;
+
 import java.util.ArrayList;
 
 import etresVivants.Fourmi;
@@ -134,7 +136,7 @@ public class Zone {
 		}
 		
 		for (Fourmi f : listeFourmi) {
-            if (!f.isDragged() && !(f.getEtat().toString() == "Mort")) {
+            if (!f.isDragged() && !(f.getEtat() instanceof Mort)) {
                 f.setChasse(true);
             }
         }

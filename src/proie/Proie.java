@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.util.Map;
 import java.util.Random;
 
+import etats.Adulte;
+import etats.Mort;
 import vue.ContexteDeSimulation;
 import vue.Simulation;
 import vue.VueProie;
@@ -113,7 +115,7 @@ public class Proie {
 		if (curZone != null) {
 
 			for (Fourmi f : curZone.getListeFourmi()) {
-				if (f.isDragged() == false && f.getEtat().toString().equals("Adulte")) {
+				if (f.isDragged() == false && f.getEtat() instanceof Adulte) {
 					fourmi = f;
 				}
 			}
@@ -167,7 +169,7 @@ public class Proie {
 				this.tueProie();
 				this.dragged = true;
 			}
-		}else if (this.fourmi.getEtat().toString().equals("Mort") && this.getVivante() == false){
+		}else if (this.fourmi.getEtat() instanceof Mort && this.getVivante() == false){
 			this.fourmi.setDragged(false);
 			this.setDragged(false);
 			this.trouveFourmiDrag(contexte);

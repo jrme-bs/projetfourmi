@@ -19,9 +19,4 @@ public class Soldat extends Role{
 		return false;
 	}
 	
-	@Override
-	public String toString() {
-		return "Soldat";
-	}
-	
 }

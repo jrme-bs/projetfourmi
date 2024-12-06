@@ -69,12 +69,12 @@ public class Ouvriere extends Role {
 		Zone haut = mapZ.get(indexZoneFourmi - ter.getNbLigne()-1);
 		Zone bas = mapZ.get(indexZoneFourmi + ter.getNbLigne()+1);
 		
-		System.out.println("===============================");
+		/*System.out.println("===============================");
 		System.out.println("zone D : " + droite);
 		System.out.println("zone G : " + gauche);
 		System.out.println("zone H : " + haut);
 		System.out.println("zone B : " + bas);
-		System.out.println("===============================");
+		System.out.println("===============================");*/
 		
 		int pheroD = 0;
 		if (droite != null) {
@@ -254,8 +254,4 @@ public class Ouvriere extends Role {
 		return true;
 	}
 	
-	@Override
-	public String toString() {
-		return "Ouvriere";
-	}
 }
