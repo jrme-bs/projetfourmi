@@ -19,6 +19,8 @@ public class Zone {
 	List<Fourmi> listeFourmi;
 	int intensitePheromones = 0;
 	int jours = 0;
+	int x;
+	int y;
 	
 	public Zone(Point point, Dimension dim)
 	{
@@ -74,7 +76,7 @@ public class Zone {
 		if (!this.listeFourmi.contains(fourmi)) {
 			this.listeFourmi.add(fourmi);
 		}
-		if(fourmi.getEtat().deposePheromone() && this.intensitePheromones < 15) {
+		if(fourmi.getEtat().deposePheromone() && this.intensitePheromones < 20) {
 			this.intensitePheromones++;
 		}
 	}
