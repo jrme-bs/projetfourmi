@@ -122,7 +122,7 @@ public class Proie {
 		}
 	}
 	
-	// Fonctionne
+	// cette fonction est de traîner la proie vers la fourmilière
 	public Point dragProie()
 	{
 		Point p = fourmi.getPos();
@@ -210,14 +210,17 @@ public class Proie {
 		}
 	}
 
+	//cette fonction récupère la fourmi qui traîne la proie
 	public Fourmi getFourmiProie() {
 		return fourmi;
 	}
 
+	//cette fonction retourne si la proie est devenue une nourriture
 	public boolean isFood() {
 		return isFood;
 	}
 
+	//cette fonction pour rendre la proie une nourriture
 	public void setFood(boolean isFood) {
 		this.isFood = isFood;
 	}
