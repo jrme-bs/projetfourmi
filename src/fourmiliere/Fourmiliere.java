@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import etats.Mort;
 import etresVivants.Fourmi;
 import proie.Proie;
 import terrain.Terrain;
@@ -112,7 +113,7 @@ public class Fourmiliere {
 	{
 		for(Fourmi f : this.getPopulation())
 		{
-			if(f.getEtat().toString().equals("Mort"))
+			if(f.getEtat() instanceof Mort)
 			{
 				this.fourmisMortes.add(f);
 			}

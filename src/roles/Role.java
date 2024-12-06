@@ -7,5 +7,4 @@ public abstract class Role {
 	public abstract void etapeDeSimulation(ContexteDeSimulation contexte);
 	public abstract void updateBilanRole(BilanRole bilan);
 	public abstract boolean deposePheromone();
-	public abstract String toString();
 }

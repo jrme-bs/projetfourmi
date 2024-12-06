@@ -254,8 +254,4 @@ public class Ouvriere extends Role {
 		return true;
 	}
 	
-	@Override
-	public String toString() {
-		return "Ouvriere";
-	}
 }

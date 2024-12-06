@@ -34,8 +34,4 @@ public class Reine extends Role{
 		return false;
 	}
 
-	@Override
-	public String toString() {
-		return "Reine";
-	}
 }

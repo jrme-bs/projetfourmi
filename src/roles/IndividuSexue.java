@@ -50,10 +50,5 @@ public class IndividuSexue extends Role {
 	public boolean deposePheromone() {
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "IndividuSexue";
-	}
 	
 }
