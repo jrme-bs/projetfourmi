@@ -2,7 +2,6 @@ package vue;
 
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Point;
 
 import proie.Proie;
@@ -10,6 +9,7 @@ import proie.Proie;
 public class VueProie extends VueElement {
 
 	Proie proie;
+	int taille = 10;
 	
 	public Proie getProie()
 	{
@@ -20,7 +20,7 @@ public class VueProie extends VueElement {
 	{
 		this.proie = proie;
 		Point pos = this.proie.getPosition();
-		this.setBounds(pos.x, pos.y, 10, 10);
+		this.setBounds((pos.x - (taille/4)), (pos.y - taille), taille, taille);
 		if(proie.getPoids() < 120)
 		{
 			this.setBackground((Color.green));
@@ -32,11 +32,12 @@ public class VueProie extends VueElement {
 			
 	}
 	
-	
-	
 	@Override
 	public void redessine() {
-		this.setLocation(this.proie.getPosition());
+		int x = this.proie.getPosition().x - (taille/4);
+		int y = this.proie.getPosition().y - taille;
+		
+		this.setLocation(new Point(x,y));
 		this.proie.initialise(this);
 	}
 

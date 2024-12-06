@@ -21,7 +21,7 @@ public class Fourmi extends Individu {
 	private int dureeDeVie;
 	private Etat etat;
 	private int age;
-	
+	private int niveauSatiete = 100;
 	private boolean chasse;
 	private boolean dragged;
 	
@@ -116,6 +116,39 @@ public class Fourmi extends Individu {
 	
 	public void editNbRole(BilanRole bilan) {
 		this.getEtat().updateBilanRole(bilan);
+	}
+	
+	//C'est pour que la fourmi mange
+	//Si il y a assez de nourriture elle reste en vie 
+	//Sinon elle meurt
+	public void mange(int quantite)
+	{
+		if(this.getEtat().mangeNourriture())
+		{
+			if(this.getQuantiteNourriture() > quantite)
+			{
+				this.niveauSatiete = 0 ;
+				this.etat = new Mort();
+				this.setPoids(0);
+				
+			}
+			else
+			{
+				this.niveauSatiete = 100;
+			}
+		}
+	}
+	
+	//Pour recuperer la quantite que chaque fourmi doit manger
+	public int getQuantiteNourriture()
+	{
+		Etat etat = this.getEtat();
+		if(etat.toString().equals("Larve"))
+		{
+			return (int) this.getPoids();
+		}
+		return (int) this.getPoids() * 1/3;
+		
 	}
 
 }

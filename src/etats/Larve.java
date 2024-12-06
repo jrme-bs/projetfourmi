@@ -10,6 +10,7 @@ import vue.ContexteDeSimulation;
 import vue.VueIndividu;
 
 public class Larve extends Etat{
+	
 
 	@Override
 	public void etapeDeSimulation(ContexteDeSimulation contexte) {
@@ -33,10 +34,12 @@ public class Larve extends Etat{
 	@Override
 	public void updateBilanRole(BilanRole bilan) {		
 	}
-
-	@Override
+@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "Larve";
-	}
-}
+	}	@Override
+	public boolean mangeNourriture() {
+		// TODO Auto-generated method stub
+		return true;
+	}}

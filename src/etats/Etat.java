@@ -12,6 +12,7 @@ public abstract class Etat {
 	public abstract void initialise(VueIndividu vue );
 	public abstract void updateBilanEtat(BilanEtat tan);
 	public abstract boolean deposePheromone();
+	public abstract boolean mangeNourriture();
 	public abstract void updateBilanRole(BilanRole bilan);
 	public abstract String toString();
 }

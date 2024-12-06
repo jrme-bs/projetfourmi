@@ -18,5 +18,10 @@ public class Soldat extends Role{
 	public boolean deposePheromone() {
 		return false;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Soldat";
+	}
+	
 }
