@@ -127,13 +127,13 @@ public class Ouvriere extends Role {
         int pointFourmX = pointFourmiliere.x + 40;
 		int pointFourmY = pointFourmiliere.y + 40;
 		
-		int tailleCarre = 20; // Taille du carré (par exemple 50x50 pixels)
+		int tailleCarre = 30;
 	    int limiteMinX = pointFourmX - tailleCarre / 2;
 	    int limiteMaxX = pointFourmX + tailleCarre / 2;
 	    int limiteMinY = pointFourmY - tailleCarre / 2;
 	    int limiteMaxY = pointFourmY + tailleCarre / 2;
 
-	    // Vérifier si la nouvelle position (x1, y1) est dans le carré
+	    // vérifie si la fourmi qui porte la proie est dans la fourmilière
 	    if (x1 >= limiteMinX && x1 <= limiteMaxX && y1 >= limiteMinY && y1 <= limiteMaxY) {
 	    	for (Proie p : ter.getListeProie()) {
 				if (p.getFourmiProie() == fourmi) {
@@ -141,7 +141,9 @@ public class Ouvriere extends Role {
 				}
 			}
 	        System.out.println("Dans la zone de mangeoire fourmis");
-	        return new Point(x, y); // Rester sur place
+	        // la fourmi repart avec ses mouvement de aléatoire
+	        fourmi.setChasse(false);
+	        return new Point(x, y);
 	    }
 		
 		return new Point(x1,y1);
@@ -194,6 +196,25 @@ public class Ouvriere extends Role {
 				}
 			}
 		}
+		
+		int tailleCarre = 20;
+	    int limiteMinX = pointFourmX - tailleCarre / 2;
+	    int limiteMaxX = pointFourmX + tailleCarre / 2;
+	    int limiteMinY = pointFourmY - tailleCarre / 2;
+	    int limiteMaxY = pointFourmY + tailleCarre / 2;
+
+	    // vérifie si la fourmi qui porte la proie est dans la fourmilière
+	    if (x1 >= limiteMinX && x1 <= limiteMaxX && y1 >= limiteMinY && y1 <= limiteMaxY) {
+	    	for (Proie p : ter.getListeProie()) {
+				if (p.getFourmiProie() == fourmi) {
+					p.setFood(true);
+				}
+			}
+	        System.out.println("Dans la zone de mangeoire fourmis");
+	        // la fourmi repart avec ses mouvement de aléatoire
+	        fourmi.setChasse(false);
+	        return new Point(x, y);
+	    }
 		
 		return new Point(x1,y1);
 		
