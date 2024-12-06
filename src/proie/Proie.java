@@ -2,17 +2,11 @@ package proie;
 
 import java.awt.Point;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import etats.Mort;
 import vue.ContexteDeSimulation;
 import vue.Simulation;
-import vue.VueIndividu;
 import vue.VueProie;
 import zone.Zone;
 import etresVivants.Fourmi;

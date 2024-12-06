@@ -14,7 +14,6 @@ import fourmiliere.Fourmiliere;
 import proie.Proie;
 import roles.Reine;
 import vue.ContexteDeSimulation;
-import vue.VueFourmiliere;
 import zone.Zone;
 
 public class Terrain {

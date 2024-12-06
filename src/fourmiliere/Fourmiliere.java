@@ -1,7 +1,6 @@
 package fourmiliere;
 
 import java.awt.Point;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,7 +14,6 @@ import trace.BilanEtat;
 import trace.BilanRole;
 import vue.ContexteDeSimulation;
 import vue.Simulation;
-import vue.VueIndividu;
 
 public class Fourmiliere {
 	private List<Fourmi> population;
