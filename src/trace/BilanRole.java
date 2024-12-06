@@ -22,14 +22,14 @@ public class BilanRole {
 	
 	public void afficheNbRoleFourmiliere() {
 		nbSexue = this.getNbFemale() + this.getNbMale();
-		/*System.out.println("============================================");
+		System.out.println("============================================");
 		System.out.println("Nombre de reine : " + nbReine);
 		System.out.println("Nombre d'ouvrière : " + nbOuvriere);
 		System.out.println("Nombre de soldat : " + nbSoldat);
 		System.out.println("\nNombre de fourmi sexue : " + nbSexue);
 		System.out.println("Nombre de male : " + nbMale);
 		System.out.println("Nombre de femelle : " + nbFemale);
-		System.out.println("============================================");*/
+		System.out.println("============================================");
 		
 		clear();
 	}

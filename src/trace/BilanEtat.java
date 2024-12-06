@@ -21,13 +21,13 @@ public class BilanEtat {
 	
 	public void afficheNbEtatFourmiliere() {
 		
-		/*System.out.println("============================================");
+		System.out.println("============================================");
 		System.out.println("Nombre d'oeuf : " + nbOeuf);
 		System.out.println("Nombre de larve : " + nbLarve);
 		System.out.println("Nombre de nymphe : " + nbNymphe);
 		System.out.println("Nombre de fourmis adulte : " + nbAdulte);
 		System.out.println("Nombre de fourmis morte : " + nbMort);
-		System.out.println("============================================");*/
+		System.out.println("============================================");
 		
 		clear();
 	}
