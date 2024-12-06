@@ -105,16 +105,9 @@ public class Proie {
 		
 		Simulation sim = contexte.getSimulation();
 		Terrain ter = sim.getTerrain();
-		//List<Zone> lz = ter.getListeZone();
 
 		Zone curZone = null;
-		/*
-		for (Zone z : lz) {
-			if (z.getListeProie().contains(this)) {
-				curZone = z;
-			}
-		}
-		*/
+
 		// parcours de la map de zone
 		for (Map.Entry<Integer, Zone> entry : ter.getMapZone().entrySet()) {
 			Zone z = entry.getValue();
@@ -131,7 +124,6 @@ public class Proie {
 				}
 			}
 		}
-		
 	}
 	
 	// Fonctionne
@@ -179,11 +171,7 @@ public class Proie {
 			}else {
 				this.chasse = false;
 				this.tueProie();
-				// trouve la fourmi et la met en instance de proie
-				this.trouveFourmiDrag(contexte);
 				this.dragged = true;
-				this.fourmi.setDragged(true);
-				// ne met pas la chasse à false ici sinon la fourmi peut partir de la zone avant de commencer à porter
 			}
 		}else if (this.fourmi.getEtat().toString().equals("Mort") && this.getVivante() == false){
 			this.fourmi.setDragged(false);
@@ -200,10 +188,18 @@ public class Proie {
 			// Fonctionne mais la fourmis et la proie disparaît visuellement
 			// cette fourmi porte la proie
 			if (dragged) {
-				Point point = this.dragProie();
-				this.fourmi.setChasse(false);
-				x = point.x;
-				y = point.y;
+				// trouve la fourmi et la met en instance de proie
+				this.trouveFourmiDrag(contexte);
+				// anti fourmi == null
+				if (this.fourmi != null) {
+					this.fourmi.setDragged(true);
+					
+					Point point = this.dragProie();
+					this.fourmi.setChasse(false);
+					x = point.x;
+					y = point.y;
+				}
+				
 			}
 		}
 		// déplacement de la proie

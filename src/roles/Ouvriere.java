@@ -30,8 +30,8 @@ public class Ouvriere extends Role {
 		Point deplacement = new Point(x,y);
 		
 		if (fourmi.isDragged() && fourmi.isChasse() == false) {
-			deplacement = rameneProiePheromone(contexte, x, y, gap, fourmi);
-			//deplacement = rameneProieSansPheromone(contexte, x, y, gap, fourmi);
+			//deplacement = rameneProiePheromone(contexte, x, y, gap, fourmi);
+			deplacement = rameneProieSansPheromone(contexte, x, y, gap, fourmi);
 		}else if (fourmi.isChasse() && fourmi.isDragged() == false){
 			
 		}else {
@@ -142,7 +142,7 @@ public class Ouvriere extends Role {
 			}
 	        System.out.println("Dans la zone de mangeoire fourmis");
 	        // la fourmi repart avec ses mouvement de aléatoire
-	        fourmi.setChasse(false);
+	        fourmi.setDragged(false);
 	        return new Point(x, y);
 	    }
 		
@@ -212,7 +212,7 @@ public class Ouvriere extends Role {
 			}
 	        System.out.println("Dans la zone de mangeoire fourmis");
 	        // la fourmi repart avec ses mouvement de aléatoire
-	        fourmi.setChasse(false);
+	        fourmi.setDragged(false);
 	        return new Point(x, y);
 	    }
 		

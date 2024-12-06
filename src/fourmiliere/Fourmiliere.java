@@ -84,9 +84,6 @@ public class Fourmiliere {
 		compteNourritureTotaleInstantannee();
 		// Affichage Nourriture actuelle
 		System.out.println("Nourriture totale : " + this.nourritureTotale);
-		
-		// remis à 0 pour recalculer après l'étape
-		this.nourritureTotale = 0;
 	}
 	
 	
@@ -183,7 +180,7 @@ public class Fourmiliere {
 		Terrain ter = sim.getTerrain();
 		
 		for (Proie p : ter.getListeProie()) {
-			if (p.isFood() == true && p.getPoids() > 0 && p.getVivante() == false) {
+			if (p.isFood() == true && p.getPoids() > 0 && p.getVivante() == false && !nourriture.contains(p)) {
 				this.addProieListeNourriture(p);
 			}else if (p.isFood() && p.getVivante() == false && p.getPoids() <= 0){
 				this.removeProieListeNourriture(p);
@@ -193,8 +190,9 @@ public class Fourmiliere {
 	}
 	
 	public void compteNourritureTotaleInstantannee() {
+		this.nourritureTotale = 0;
 		for (Proie p : this.nourriture) {
-			this.nourritureTotale = p.getPoids();
+			this.nourritureTotale += p.getPoids();
 		}
 	}
 		
