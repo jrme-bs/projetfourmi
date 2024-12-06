@@ -49,7 +49,7 @@ public class Simulation {
 	}
 	
 	private void creerJourCpt() {
-		labelJours = new JLabel("Jours pass?s :" + jours, JLabel.RIGHT);
+		labelJours = new JLabel("Jours passés :" + jours, JLabel.RIGHT);
 		labelJours.setPreferredSize(new Dimension(250, 100));
 		labelJours.setFont(new Font("Verdana", Font.PLAIN, 25));
 	}
@@ -58,7 +58,7 @@ public class Simulation {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		
-		JLabel label = new JLabel("ms par journ?e:", JLabel.RIGHT);
+		JLabel label = new JLabel("ms par journée:", JLabel.RIGHT);
 		JSlider slider = new JSlider(JSlider.HORIZONTAL, 1, 1000, 500);
 
 		slider.addChangeListener(new ChangeListener() {
@@ -87,7 +87,7 @@ public class Simulation {
 	
 	public void updateJours() {
 		jours += 1;
-		labelJours.setText("Jours pass?s :" + jours);
+		labelJours.setText("Jours passés :" + jours);
 	}
 
 	

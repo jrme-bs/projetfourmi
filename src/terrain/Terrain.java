@@ -76,7 +76,7 @@ public class Terrain {
 	
 		
 	public void etapeDeSimulation(ContexteDeSimulation contexte) {
-		
+		// créée la grille de zone si elle n'a pas été créée
 		if (this.mapZone.isEmpty()) {
 			
 			int cpt = 1; // index pour la map de zone

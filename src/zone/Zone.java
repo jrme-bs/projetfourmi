@@ -21,8 +21,6 @@ public class Zone {
 	List<Fourmi> listeFourmi;
 	int intensitePheromones = 0;
 	int jours = 0;
-	int x;
-	int y;
 	
 	public Zone(Point point, Dimension dim)
 	{
@@ -78,12 +76,14 @@ public class Zone {
 		if (!this.listeFourmi.contains(fourmi)) {
 			this.listeFourmi.add(fourmi);
 		}
+		// augmente l'intensité des phéromones jusqu'a un maximum de 20, seulement si la fourmi en est capable
 		if(fourmi.getEtat().deposePheromone() && this.intensitePheromones < 20) {
 			this.intensitePheromones++;
 		}
 	}
 	
 	public void etapeDeSimulation(ContexteDeSimulation contexte) {
+		// compteur de jour necessaire pour gerer l'intensite des pheromones
 		jours++;
 		// stop le mouvement des proies et fourmis dans une mÃªme zone et les considÃ¨res en mode chasse
 		boolean test = this.chasseEnCours();
